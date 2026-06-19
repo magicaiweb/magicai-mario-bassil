@@ -26,7 +26,13 @@ export default function Home() {
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
       <section id="home" className="relative min-h-[92vh] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,207,64,0.32),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,53,94,0.34),transparent_30%),linear-gradient(135deg,#111111_0%,#261111_46%,#111111_100%)]" />
+        <img
+          src={initialContent.hero.image}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-[56%_18%] opacity-55"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.82)_36%,rgba(0,0,0,0.42)_72%,rgba(0,0,0,0.7)_100%),linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.92))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,207,64,0.28),transparent_28%),radial-gradient(circle_at_82%_14%,rgba(255,53,94,0.28),transparent_30%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,transparent,#111111)]" />
         <div className="relative mx-auto flex min-h-[92vh] max-w-7xl flex-col px-5 py-5 sm:px-8">
           <header className="flex items-center justify-between gap-4 rounded-lg border border-white/15 bg-black/35 px-4 py-3 backdrop-blur">
@@ -89,15 +95,17 @@ export default function Home() {
             </div>
 
             <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/15 bg-black/50 p-4 shadow-2xl">
-              <div className="absolute inset-4 rounded-md bg-[linear-gradient(145deg,rgba(255,202,40,0.82),rgba(237,44,73,0.72)_42%,rgba(20,20,20,0.95)_43%)]" />
-              <div className="absolute inset-x-8 top-8 h-28 rounded-md bg-white/10 backdrop-blur-sm" />
-              <div className="absolute bottom-8 left-8 right-8 rounded-md border border-white/20 bg-black/55 p-5 backdrop-blur">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-amber-300">Media slot</p>
-                <h2 className="mt-3 text-3xl font-black">{isArabic ? "صورة أو فيديو رئيسي" : "Hero photo or video"}</h2>
-                <p className="mt-3 text-sm leading-6 text-white/70">
-                  {isArabic
-                    ? "المحتوى البصري الرسمي يضاف من لوحة الإدارة عند تسليمه."
-                    : "Official approved visuals can be uploaded through the CMS when supplied."}
+              <img
+                src={initialContent.hero.image}
+                alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
+                className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.14),rgba(0,0,0,0.02)_42%,rgba(0,0,0,0.44)),linear-gradient(180deg,transparent_48%,rgba(0,0,0,0.8))]" />
+              <div className="absolute bottom-8 left-8 right-8 rounded-md border border-white/20 bg-black/50 p-5 backdrop-blur">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-amber-300">Official portrait</p>
+                <h2 className="mt-3 text-3xl font-black">{isArabic ? "ماريو باسيل" : "Mario Bassil"}</h2>
+                <p className="mt-3 text-sm leading-6 text-white/74">
+                  {isArabic ? "صورة مؤقتة من الصفحة الرسمية على فيسبوك." : "Placeholder portrait from Mario's official Facebook profile."}
                 </p>
               </div>
             </div>

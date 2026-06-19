@@ -18,7 +18,41 @@ collections:
         format: json
         fields:
           - { label: Navigation, name: nav, widget: list }
-          - { label: Hero, name: hero, widget: object }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - label: Eyebrow
+                name: eyebrow
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: Subtitle
+                name: subtitle
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Arabic, name: ar, widget: text }
+              - { label: Hero Image URL, name: image, widget: string }
+              - label: Primary CTA
+                name: primaryCta
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: Secondary CTA
+                name: secondaryCta
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
           - { label: Sections, name: sections, widget: list }
           - label: Events
             name: events

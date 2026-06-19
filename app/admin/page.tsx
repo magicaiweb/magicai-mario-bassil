@@ -66,12 +66,24 @@ export default function AdminPage() {
     setSavedAt(new Date().toLocaleTimeString());
   }
 
-  function updateHero(field: keyof SiteContent["hero"], value: string) {
+  function updateHero(field: Exclude<keyof SiteContent["hero"], "image">, value: string) {
     const next = {
       ...content,
       hero: {
         ...content.hero,
         [field]: { ...content.hero[field], [activeLanguage]: value },
+      },
+    };
+    setContent(next);
+    saveDraft(next);
+  }
+
+  function updateHeroImage(value: string) {
+    const next = {
+      ...content,
+      hero: {
+        ...content.hero,
+        image: value,
       },
     };
     setContent(next);
@@ -225,6 +237,7 @@ export default function AdminPage() {
             <Field label="Eyebrow" value={content.hero.eyebrow[activeLanguage]} onChange={(value) => updateHero("eyebrow", value)} />
             <Field label="Title" value={content.hero.title[activeLanguage]} onChange={(value) => updateHero("title", value)} />
             <Area label="Subtitle" value={content.hero.subtitle[activeLanguage]} onChange={(value) => updateHero("subtitle", value)} />
+            <Field label="Hero image URL" value={content.hero.image} onChange={updateHeroImage} />
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Primary CTA" value={content.hero.primaryCta[activeLanguage]} onChange={(value) => updateHero("primaryCta", value)} />
               <Field label="Secondary CTA" value={content.hero.secondaryCta[activeLanguage]} onChange={(value) => updateHero("secondaryCta", value)} />

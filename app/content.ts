@@ -58,6 +58,7 @@ export type SiteContent = {
     eyebrow: LocalizedText;
     title: LocalizedText;
     subtitle: LocalizedText;
+    image: string;
     primaryCta: LocalizedText;
     secondaryCta: LocalizedText;
   };
