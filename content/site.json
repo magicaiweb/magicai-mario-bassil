@@ -1,0 +1,276 @@
+{
+  "nav": [
+    {
+      "label": {
+        "en": "Home",
+        "ar": "الرئيسية"
+      },
+      "href": "#home"
+    },
+    {
+      "label": {
+        "en": "About",
+        "ar": "نبذة"
+      },
+      "href": "#about"
+    },
+    {
+      "label": {
+        "en": "Shows",
+        "ar": "العروض"
+      },
+      "href": "#shows"
+    },
+    {
+      "label": {
+        "en": "Videos",
+        "ar": "الفيديو"
+      },
+      "href": "#videos"
+    },
+    {
+      "label": {
+        "en": "Press",
+        "ar": "الإعلام"
+      },
+      "href": "#press"
+    },
+    {
+      "label": {
+        "en": "Book",
+        "ar": "احجز ماريو"
+      },
+      "href": "#book"
+    }
+  ],
+  "hero": {
+    "eyebrow": {
+      "en": "Lebanese comedy, theatre, television, and live shows",
+      "ar": "كوميديا لبنانية، مسرح، تلفزيون، وعروض مباشرة"
+    },
+    "title": {
+      "en": "Mario Bassil Official",
+      "ar": "الموقع الرسمي لماريو باسيل"
+    },
+    "subtitle": {
+      "en": "A bold bilingual home for fans, promoters, press, and private event organizers across Lebanon, the Arab world, and the diaspora.",
+      "ar": "منصة ثنائية اللغة للجمهور والمنظمين والإعلام والفعاليات الخاصة في لبنان والعالم العربي والاغتراب."
+    },
+    "primaryCta": {
+      "en": "Book Mario",
+      "ar": "احجز ماريو"
+    },
+    "secondaryCta": {
+      "en": "Upcoming Shows",
+      "ar": "العروض المقبلة"
+    }
+  },
+  "sections": [
+    {
+      "id": "about",
+      "type": "text",
+      "title": {
+        "en": "Comedy Night legacy, live stage energy",
+        "ar": "إرث كوميدي نايت وطاقة المسرح"
+      },
+      "body": {
+        "en": "Mario Bassil is one of Lebanon's best-known comedy performers, recognized for stage characters, television presence, theatre work, and live performances that connect Lebanese humor with a wider Arab audience.",
+        "ar": "ماريو باسيل من أبرز الوجوه الكوميدية في لبنان، معروف بشخصياته المسرحية وحضوره التلفزيوني وأعماله المسرحية وعروضه المباشرة التي تنقل الفكاهة اللبنانية إلى جمهور عربي أوسع."
+      },
+      "status": "published"
+    },
+    {
+      "id": "book",
+      "type": "form",
+      "title": {
+        "en": "Bring Mario to your event",
+        "ar": "استضف ماريو في مناسبتك"
+      },
+      "body": {
+        "en": "Corporate events, theatre nights, private celebrations, festivals, and diaspora shows can be requested through the booking form.",
+        "ar": "يمكن طلب ماريو للفعاليات الشركاتية، العروض المسرحية، المناسبات الخاصة، المهرجانات، وعروض الاغتراب عبر نموذج الحجز."
+      },
+      "status": "published"
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-07-12",
+      "city": {
+        "en": "Beirut, Lebanon",
+        "ar": "بيروت، لبنان"
+      },
+      "venue": {
+        "en": "Venue TBA",
+        "ar": "المكان يعلن لاحقاً"
+      },
+      "label": {
+        "en": "Summer comedy night",
+        "ar": "ليلة كوميدية صيفية"
+      },
+      "ticketUrl": "#tickets",
+      "status": "soon"
+    },
+    {
+      "date": "2026-08-30",
+      "city": {
+        "en": "Dubai, UAE",
+        "ar": "دبي، الإمارات"
+      },
+      "venue": {
+        "en": "Ticketing placeholder",
+        "ar": "رابط التذاكر قريباً"
+      },
+      "label": {
+        "en": "Gulf tour placeholder",
+        "ar": "محطة خليجية مبدئية"
+      },
+      "ticketUrl": "#tickets",
+      "status": "soon"
+    },
+    {
+      "date": "2026-10-18",
+      "city": {
+        "en": "Montreal, Canada",
+        "ar": "مونتريال، كندا"
+      },
+      "venue": {
+        "en": "Diaspora event placeholder",
+        "ar": "فعالية اغترابية مبدئية"
+      },
+      "label": {
+        "en": "Diaspora stage",
+        "ar": "عرض للاغتراب"
+      },
+      "ticketUrl": "#tickets",
+      "status": "soon"
+    }
+  ],
+  "media": [
+    {
+      "title": {
+        "en": "Comedy Night clips",
+        "ar": "مقاطع كوميدي نايت"
+      },
+      "source": "YouTube",
+      "url": "https://www.youtube.com/results?search_query=Mario+Bassil+Comedy+Night",
+      "category": {
+        "en": "TV and theatre archive",
+        "ar": "أرشيف تلفزيوني ومسرحي"
+      }
+    },
+    {
+      "title": {
+        "en": "Stand-up moments",
+        "ar": "لحظات ستاند أب"
+      },
+      "source": "Instagram",
+      "url": "https://www.instagram.com/mariobassilofficial/?hl=en",
+      "category": {
+        "en": "Reels and social clips",
+        "ar": "ريلز ومقاطع اجتماعية"
+      }
+    },
+    {
+      "title": {
+        "en": "Fan updates",
+        "ar": "أخبار الجمهور"
+      },
+      "source": "Facebook",
+      "url": "https://www.facebook.com/mario.bassil.comedian/",
+      "category": {
+        "en": "Announcements",
+        "ar": "إعلانات"
+      }
+    }
+  ],
+  "press": [
+    {
+      "title": {
+        "en": "Press kit placeholder",
+        "ar": "ملف صحفي مبدئي"
+      },
+      "outlet": "Management",
+      "url": "#press-kit",
+      "type": "Download"
+    },
+    {
+      "title": {
+        "en": "Interview archive",
+        "ar": "أرشيف المقابلات"
+      },
+      "outlet": "Media",
+      "url": "#interviews",
+      "type": "Interview"
+    },
+    {
+      "title": {
+        "en": "Tour city SEO notes",
+        "ar": "ملاحظات SEO للمدن"
+      },
+      "outlet": "CMS",
+      "url": "#seo",
+      "type": "Article"
+    }
+  ],
+  "gallery": [
+    {
+      "label": {
+        "en": "Hero portrait slot",
+        "ar": "مساحة صورة رئيسية"
+      },
+      "tone": "from-red-500 to-amber-300"
+    },
+    {
+      "label": {
+        "en": "Stage photo slot",
+        "ar": "مساحة صورة المسرح"
+      },
+      "tone": "from-violet-500 to-fuchsia-400"
+    },
+    {
+      "label": {
+        "en": "Poster slot",
+        "ar": "مساحة بوستر"
+      },
+      "tone": "from-cyan-400 to-blue-600"
+    },
+    {
+      "label": {
+        "en": "Press image slot",
+        "ar": "مساحة صورة صحفية"
+      },
+      "tone": "from-lime-300 to-emerald-600"
+    }
+  ],
+  "contacts": {
+    "email": "rim@vzblt.com",
+    "facebook": "https://www.facebook.com/mario.bassil.comedian/",
+    "instagram": "https://www.instagram.com/mariobassilofficial/?hl=en"
+  },
+  "pages": [
+    {
+      "slug": "comedy-night",
+      "title": {
+        "en": "Comedy Night",
+        "ar": "كوميدي نايت"
+      },
+      "summary": {
+        "en": "A CMS-created page for the Comedy Night story, posters, tour notes, ticket links and press proof.",
+        "ar": "صفحة قابلة للإدارة لسرد قصة كوميدي نايت والبوسترات ومعلومات الجولات وروابط التذاكر."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Long-running live comedy",
+            "ar": "كوميديا مباشرة طويلة الأمد"
+          },
+          "body": {
+            "en": "This page demonstrates how new editorial pages and sections can be created from the backend, then published through the Git-based CMS workflow.",
+            "ar": "تعرض هذه الصفحة كيفية إنشاء صفحات وأقسام تحريرية جديدة من لوحة الإدارة ثم نشرها عبر نظام إدارة محتوى مرتبط بـ Git."
+          }
+        }
+      ]
+    }
+  ]
+}

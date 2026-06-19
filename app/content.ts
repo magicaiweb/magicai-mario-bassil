@@ -1,0 +1,74 @@
+import content from "../content/site.json";
+
+export type Language = "en" | "ar";
+
+export type LocalizedText = Record<Language, string>;
+
+export type EditableSection = {
+  id: string;
+  type: "hero" | "text" | "events" | "media" | "gallery" | "press" | "form";
+  title: LocalizedText;
+  body: LocalizedText;
+  status: "published" | "draft";
+};
+
+export type EventItem = {
+  date: string;
+  city: LocalizedText;
+  venue: LocalizedText;
+  label: LocalizedText;
+  ticketUrl: string;
+  status: "on-sale" | "soon" | "past";
+};
+
+export type MediaItem = {
+  title: LocalizedText;
+  source: "YouTube" | "Instagram" | "Facebook";
+  url: string;
+  category: LocalizedText;
+};
+
+export type PressItem = {
+  title: LocalizedText;
+  outlet: string;
+  url: string;
+  type: "Interview" | "Article" | "Download";
+};
+
+export type PageItem = {
+  slug: string;
+  title: LocalizedText;
+  summary: LocalizedText;
+  sections: {
+    heading: LocalizedText;
+    body: LocalizedText;
+  }[];
+};
+
+export type SiteContent = {
+  nav: { label: LocalizedText; href: string }[];
+  hero: {
+    eyebrow: LocalizedText;
+    title: LocalizedText;
+    subtitle: LocalizedText;
+    primaryCta: LocalizedText;
+    secondaryCta: LocalizedText;
+  };
+  sections: EditableSection[];
+  events: EventItem[];
+  media: MediaItem[];
+  press: PressItem[];
+  gallery: { label: LocalizedText; tone: string }[];
+  contacts: {
+    email: string;
+    facebook: string;
+    instagram: string;
+  };
+  pages: PageItem[];
+};
+
+export const initialContent = content as SiteContent;
+
+export function t(text: LocalizedText, language: Language) {
+  return text[language];
+}

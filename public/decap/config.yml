@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: magicaiweb/magicai-mario-bassil
+  branch: main
+
+local_backend: true
+publish_mode: editorial_workflow
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: website
+    label: Website Content
+    files:
+      - name: content
+        label: Editable Content Model
+        file: content/site.json
+        format: json
+        fields:
+          - { label: Navigation, name: nav, widget: list }
+          - { label: Hero, name: hero, widget: object }
+          - { label: Sections, name: sections, widget: list }
+          - { label: Events, name: events, widget: list }
+          - { label: Media, name: media, widget: list }
+          - { label: Gallery, name: gallery, widget: list }
+          - { label: Press, name: press, widget: list }
+          - { label: Contacts, name: contacts, widget: object }
+          - { label: Custom Pages, name: pages, widget: list }
