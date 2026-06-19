@@ -276,7 +276,7 @@ export default function Home() {
             {initialContent.pages.map((page) => (
               <a
                 key={page.slug}
-                href={`/${page.slug}/`}
+                href={`${page.slug}/`}
                 className="rounded-lg border border-white/12 bg-white/[0.04] p-5 transition hover:border-amber-300"
               >
                 <h3 className="text-2xl font-black">{t(page.title, language)}</h3>
