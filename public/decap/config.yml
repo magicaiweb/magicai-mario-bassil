@@ -20,7 +20,51 @@ collections:
           - { label: Navigation, name: nav, widget: list }
           - { label: Hero, name: hero, widget: object }
           - { label: Sections, name: sections, widget: list }
-          - { label: Events, name: events, widget: list }
+          - label: Events
+            name: events
+            widget: list
+            fields:
+              - { label: Slug, name: slug, widget: string }
+              - { label: Date, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+              - { label: Start Time, name: startTime, widget: string }
+              - { label: End Time, name: endTime, widget: string }
+              - label: Event Title
+                name: label
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: City / Location
+                name: city
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: Venue
+                name: venue
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - label: Description
+                name: description
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Arabic, name: ar, widget: text }
+              - label: Ticket Price
+                name: ticketPrice
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - { label: Ticket URL, name: ticketUrl, widget: string }
+              - { label: Poster Image, name: posterImage, widget: image, required: false }
+              - { label: Poster Fallback Tone, name: posterTone, widget: string, required: false }
+              - label: Status
+                name: status
+                widget: select
+                options: ["on-sale", "soon", "past"]
           - { label: Media, name: media, widget: list }
           - { label: Gallery, name: gallery, widget: list }
           - { label: Press, name: press, widget: list }

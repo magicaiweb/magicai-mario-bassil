@@ -13,11 +13,18 @@ export type EditableSection = {
 };
 
 export type EventItem = {
+  slug: string;
   date: string;
+  startTime: string;
+  endTime: string;
   city: LocalizedText;
   venue: LocalizedText;
   label: LocalizedText;
+  description: LocalizedText;
+  ticketPrice: LocalizedText;
   ticketUrl: string;
+  posterImage: string;
+  posterTone: string;
   status: "on-sale" | "soon" | "past";
 };
 

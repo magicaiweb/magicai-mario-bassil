@@ -95,7 +95,10 @@
   ],
   "events": [
     {
+      "slug": "beirut-summer-comedy-night",
       "date": "2026-07-12",
+      "startTime": "20:30",
+      "endTime": "22:00",
       "city": {
         "en": "Beirut, Lebanon",
         "ar": "بيروت، لبنان"
@@ -108,11 +111,24 @@
         "en": "Summer comedy night",
         "ar": "ليلة كوميدية صيفية"
       },
+      "description": {
+        "en": "A first-draft event detail page for Mario Bassil's upcoming live comedy calendar. Replace this text from the CMS with final show notes, ticketing terms, age guidance, and promoter details.",
+        "ar": "صفحة تفاصيل أولية ضمن تقويم عروض ماريو باسيل المباشرة. يمكن استبدال هذا النص من لوحة الإدارة بتفاصيل العرض النهائية وشروط التذاكر ومعلومات المنظم."
+      },
+      "ticketPrice": {
+        "en": "TBA",
+        "ar": "يعلن لاحقاً"
+      },
       "ticketUrl": "#tickets",
+      "posterImage": "",
+      "posterTone": "from-amber-300 via-red-500 to-black",
       "status": "soon"
     },
     {
+      "slug": "dubai-gulf-tour-placeholder",
       "date": "2026-08-30",
+      "startTime": "20:00",
+      "endTime": "22:00",
       "city": {
         "en": "Dubai, UAE",
         "ar": "دبي، الإمارات"
@@ -125,11 +141,24 @@
         "en": "Gulf tour placeholder",
         "ar": "محطة خليجية مبدئية"
       },
+      "description": {
+        "en": "Draft event detail layout for a Gulf tour stop with room for a poster, venue notes, booking partner links, and a direct ticket CTA.",
+        "ar": "تصميم أولي لصفحة محطة ضمن جولة خليجية مع مساحة للبوستر وملاحظات المكان وروابط شركاء التذاكر وزر شراء مباشر."
+      },
+      "ticketPrice": {
+        "en": "TBA",
+        "ar": "يعلن لاحقاً"
+      },
       "ticketUrl": "#tickets",
+      "posterImage": "",
+      "posterTone": "from-cyan-300 via-blue-700 to-black",
       "status": "soon"
     },
     {
+      "slug": "montreal-diaspora-stage",
       "date": "2026-10-18",
+      "startTime": "19:30",
+      "endTime": "21:30",
       "city": {
         "en": "Montreal, Canada",
         "ar": "مونتريال، كندا"
@@ -142,7 +171,17 @@
         "en": "Diaspora stage",
         "ar": "عرض للاغتراب"
       },
+      "description": {
+        "en": "Draft page for a diaspora audience event. The CMS can hold the final show story, press line, poster, venue instructions, and ticket URL.",
+        "ar": "صفحة أولية لعرض موجه لجمهور الاغتراب. يمكن للـ CMS إدارة وصف العرض النهائي والبوستر وتعليمات المكان ورابط التذاكر."
+      },
+      "ticketPrice": {
+        "en": "TBA",
+        "ar": "يعلن لاحقاً"
+      },
       "ticketUrl": "#tickets",
+      "posterImage": "",
+      "posterTone": "from-fuchsia-500 via-violet-600 to-black",
       "status": "soon"
     }
   ],

@@ -151,16 +151,23 @@ export default function Home() {
           </div>
           <div className="mt-10 grid gap-4">
             {initialContent.events.map((event) => (
-              <article key={`${event.date}-${event.ticketUrl}`} className="grid gap-4 rounded-lg border border-white/12 bg-white/[0.04] p-5 sm:grid-cols-[170px_1fr_auto] sm:items-center">
+              <Link
+                key={event.slug}
+                href={`/shows/${event.slug}/`}
+                className="grid gap-4 rounded-lg border border-white/12 bg-white/[0.04] p-5 transition hover:border-amber-300 sm:grid-cols-[170px_1fr_auto] sm:items-center"
+              >
                 <time className="text-lg font-black text-amber-300">{dateFormatter.format(new Date(event.date))}</time>
                 <div>
                   <h3 className="text-2xl font-black">{t(event.city, language)}</h3>
                   <p className="mt-1 text-white/65">{t(event.label, language)} · {t(event.venue, language)}</p>
+                  <p className="mt-2 text-sm font-black uppercase tracking-[0.16em] text-white/42">
+                    {isArabic ? "عرض التفاصيل" : "View event details"}
+                  </p>
                 </div>
-                <a href={event.ticketUrl} className="rounded-md bg-white px-5 py-3 text-center text-sm font-black uppercase text-black">
+                <span className="rounded-md bg-white px-5 py-3 text-center text-sm font-black uppercase text-black">
                   {event.status === "on-sale" ? (isArabic ? "تذاكر" : "Tickets") : (isArabic ? "قريباً" : "Soon")}
-                </a>
-              </article>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

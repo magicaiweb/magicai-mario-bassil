@@ -26,6 +26,25 @@ const blankPage: PageItem = {
   ],
 };
 
+const blankEvent: EventItem = {
+  slug: "new-event",
+  date: "2026-07-01",
+  startTime: "20:00",
+  endTime: "22:00",
+  city: { en: "City, Country", ar: "المدينة، البلد" },
+  venue: { en: "Venue name", ar: "اسم المكان" },
+  label: { en: "New Mario Bassil event", ar: "عرض جديد لماريو باسيل" },
+  description: {
+    en: "Write the event description, venue notes, and ticketing details here.",
+    ar: "اكتب وصف العرض وملاحظات المكان وتفاصيل التذاكر هنا.",
+  },
+  ticketPrice: { en: "TBA", ar: "يعلن لاحقاً" },
+  ticketUrl: "#tickets",
+  posterImage: "",
+  posterTone: "from-amber-300 via-red-500 to-black",
+  status: "soon",
+};
+
 export default function AdminPage() {
   const [content, setContent] = useState<SiteContent>(initialContent);
   const [activeLanguage, setActiveLanguage] = useState<Language>("en");
@@ -120,6 +139,15 @@ export default function AdminPage() {
   function updateEvent(index: number, patch: Partial<EventItem>) {
     const events = content.events.map((event, itemIndex) => (itemIndex === index ? { ...event, ...patch } : event));
     const next = { ...content, events };
+    setContent(next);
+    saveDraft(next);
+  }
+
+  function addEvent() {
+    const next = {
+      ...content,
+      events: [...content.events, { ...blankEvent, slug: `new-event-${Date.now()}` }],
+    };
     setContent(next);
     saveDraft(next);
   }
@@ -258,13 +286,32 @@ export default function AdminPage() {
           </EditorPanel>
 
           <EditorPanel id="events" title="Events / Tour Calendar">
+            <div className="flex justify-end">
+              <button type="button" onClick={addEvent} className="rounded-md bg-black px-4 py-3 text-sm font-black text-white">
+                Create event
+              </button>
+            </div>
             {content.events.map((event, index) => (
-              <div key={`${event.date}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-5">
-                <Field label="Date" value={event.date} onChange={(value) => updateEvent(index, { date: value })} />
-                <Field label="City" value={event.city[activeLanguage]} onChange={(value) => updateEvent(index, { city: { ...event.city, [activeLanguage]: value } })} />
-                <Field label="Venue" value={event.venue[activeLanguage]} onChange={(value) => updateEvent(index, { venue: { ...event.venue, [activeLanguage]: value } })} />
-                <Field label="Ticket URL" value={event.ticketUrl} onChange={(value) => updateEvent(index, { ticketUrl: value })} />
-                <Select label="Status" value={event.status} options={["on-sale", "soon", "past"]} onChange={(value) => updateEvent(index, { status: value as EventItem["status"] })} />
+              <div key={`${event.slug}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4">
+                <div className="grid gap-3 lg:grid-cols-4">
+                  <Field label="Event slug" value={event.slug} onChange={(value) => updateEvent(index, { slug: value })} />
+                  <Field label="Date" value={event.date} onChange={(value) => updateEvent(index, { date: value })} />
+                  <Field label="Start time" value={event.startTime} onChange={(value) => updateEvent(index, { startTime: value })} />
+                  <Field label="End time" value={event.endTime} onChange={(value) => updateEvent(index, { endTime: value })} />
+                </div>
+                <div className="grid gap-3 lg:grid-cols-4">
+                  <Field label="Event title" value={event.label[activeLanguage]} onChange={(value) => updateEvent(index, { label: { ...event.label, [activeLanguage]: value } })} />
+                  <Field label="City" value={event.city[activeLanguage]} onChange={(value) => updateEvent(index, { city: { ...event.city, [activeLanguage]: value } })} />
+                  <Field label="Venue" value={event.venue[activeLanguage]} onChange={(value) => updateEvent(index, { venue: { ...event.venue, [activeLanguage]: value } })} />
+                  <Field label="Ticket price" value={event.ticketPrice[activeLanguage]} onChange={(value) => updateEvent(index, { ticketPrice: { ...event.ticketPrice, [activeLanguage]: value } })} />
+                </div>
+                <div className="grid gap-3 lg:grid-cols-3">
+                  <Field label="Ticket URL" value={event.ticketUrl} onChange={(value) => updateEvent(index, { ticketUrl: value })} />
+                  <Field label="Poster image URL" value={event.posterImage} onChange={(value) => updateEvent(index, { posterImage: value })} />
+                  <Select label="Status" value={event.status} options={["on-sale", "soon", "past"]} onChange={(value) => updateEvent(index, { status: value as EventItem["status"] })} />
+                </div>
+                <Field label="Poster gradient fallback" value={event.posterTone} onChange={(value) => updateEvent(index, { posterTone: value })} />
+                <Area label="Event description" value={event.description[activeLanguage]} onChange={(value) => updateEvent(index, { description: { ...event.description, [activeLanguage]: value } })} />
               </div>
             ))}
           </EditorPanel>

@@ -1,0 +1,167 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { EventItem, Language, t } from "../../content";
+
+const languageLabels: Record<Language, string> = {
+  en: "EN",
+  ar: "AR",
+};
+
+export function EventDetail({ event }: { event: EventItem }) {
+  const [language, setLanguage] = useState<Language>("en");
+  const isArabic = language === "ar";
+
+  const formattedDate = useMemo(
+    () =>
+      new Intl.DateTimeFormat(isArabic ? "ar-LB" : "en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+      }).format(new Date(`${event.date}T00:00:00`)),
+    [event.date, isArabic],
+  );
+
+  return (
+    <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#f8f7f4] text-[#171717]">
+      <header className="border-b border-black/10 bg-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
+          <Link href="/#shows" className="text-sm font-black uppercase tracking-[0.22em] text-red-600">
+            Mario Bassil
+          </Link>
+          <div className="flex items-center gap-2">
+            {(Object.keys(languageLabels) as Language[]).map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setLanguage(key)}
+                className={`h-9 min-w-10 rounded-md border px-3 text-sm font-black transition ${
+                  language === key ? "border-black bg-black text-white" : "border-black/15 bg-white text-black"
+                }`}
+              >
+                {languageLabels[key]}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[370px_1fr] lg:gap-9 lg:py-16">
+        <EventPoster event={event} language={language} />
+
+        <article>
+          <div className="grid gap-5 border-b-4 border-red-500 pb-5 text-sm font-black text-black/78 md:grid-cols-3">
+            <EventMeta icon="calendar" label={formattedDate} />
+            <EventMeta icon="clock" label={`${event.startTime} - ${event.endTime}`} />
+            <EventMeta icon="pin" label={t(event.city, language)} />
+          </div>
+
+          <div className="py-8">
+            <h1 className="text-4xl font-black leading-tight sm:text-5xl">
+              {t(event.label, language)}
+            </h1>
+            <p className="mt-2 text-xl font-bold text-black/62">
+              {t(event.venue, language)}
+            </p>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-black/68">
+              {t(event.description, language)}
+            </p>
+          </div>
+
+          <div className="flex flex-col items-start gap-4">
+            <p className="text-2xl font-black tracking-normal text-red-500">
+              {isArabic ? "سعر التذكرة: " : "Ticket Price : "}
+              {t(event.ticketPrice, language)}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={event.ticketUrl}
+                className="rounded-none border border-black bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-black hover:text-white"
+              >
+                {isArabic ? "شراء تذكرة" : "Buy Ticket"}
+              </a>
+              <Link
+                href="/#book"
+                className="rounded-none border border-black/15 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:border-black"
+              >
+                {isArabic ? "طلب حجز" : "Booking Inquiry"}
+              </Link>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  );
+}
+
+function EventPoster({ event, language }: { event: EventItem; language: Language }) {
+  const posterStyle = event.posterImage
+    ? {
+        backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.62)), url(${event.posterImage})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }
+    : undefined;
+
+  return (
+    <div
+      className={`relative flex aspect-[3/4] min-h-[420px] flex-col justify-between overflow-hidden bg-gradient-to-br ${event.posterTone} p-7 text-white shadow-xl`}
+      style={posterStyle}
+    >
+      <div className="absolute inset-x-0 top-0 h-24 bg-black/25" />
+      <div className="relative">
+        <p className="text-xs font-black uppercase tracking-[0.26em] text-amber-200">
+          Mario Bassil Official
+        </p>
+        <h2 className="mt-8 text-5xl font-black uppercase leading-[0.92]">
+          {t(event.label, language)}
+        </h2>
+      </div>
+      <div className="relative rounded-md border border-white/20 bg-black/42 p-4 backdrop-blur">
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-200">
+          {event.date}
+        </p>
+        <p className="mt-2 text-2xl font-black">{t(event.city, language)}</p>
+        <p className="mt-1 text-sm text-white/72">{t(event.venue, language)}</p>
+      </div>
+    </div>
+  );
+}
+
+function EventMeta({ icon, label }: { icon: "calendar" | "clock" | "pin"; label: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="grid h-7 w-7 shrink-0 place-items-center text-black/52">
+        <Icon name={icon} />
+      </span>
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function Icon({ name }: { name: "calendar" | "clock" | "pin" }) {
+  if (name === "clock") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-none stroke-current stroke-2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v6l4 2" />
+      </svg>
+    );
+  }
+
+  if (name === "pin") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-none stroke-current stroke-2">
+        <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-none stroke-current stroke-2">
+      <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z" />
+    </svg>
+  );
+}
