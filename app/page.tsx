@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { initialContent, Language, t } from "./content";
 
@@ -26,9 +27,12 @@ export default function Home() {
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
       <section id="home" className="relative min-h-[92vh] overflow-hidden">
-        <img
+        <Image
           src={initialContent.hero.image}
           alt=""
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover object-[56%_18%] opacity-55"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.82)_36%,rgba(0,0,0,0.42)_72%,rgba(0,0,0,0.7)_100%),linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.92))]" />
@@ -95,9 +99,12 @@ export default function Home() {
             </div>
 
             <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/15 bg-black/50 p-4 shadow-2xl">
-              <img
+              <Image
                 src={initialContent.hero.image}
                 alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
               />
               <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.14),rgba(0,0,0,0.02)_42%,rgba(0,0,0,0.44)),linear-gradient(180deg,transparent_48%,rgba(0,0,0,0.8))]" />
