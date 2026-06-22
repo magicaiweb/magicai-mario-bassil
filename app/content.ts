@@ -9,6 +9,11 @@ export type EditableSection = {
   type: "hero" | "text" | "events" | "media" | "gallery" | "press" | "form";
   title: LocalizedText;
   body: LocalizedText;
+  ctaLabel?: LocalizedText;
+  cards?: {
+    title: LocalizedText;
+    body: LocalizedText;
+  }[];
   status: "published" | "draft";
 };
 
@@ -39,7 +44,7 @@ export type PressItem = {
   title: LocalizedText;
   outlet: string;
   url: string;
-  type: "Interview" | "Article" | "Download";
+  type: "Interview" | "Article" | "YouTube";
 };
 
 export type PageItem = {
@@ -66,7 +71,7 @@ export type SiteContent = {
   events: EventItem[];
   media: MediaItem[];
   press: PressItem[];
-  gallery: { label: LocalizedText; tone: string }[];
+  gallery: { label: LocalizedText; image: string; tone: string }[];
   contacts: {
     email: string;
     facebook: string;

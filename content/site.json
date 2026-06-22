@@ -78,6 +78,42 @@
         "en": "Mario Bassil is one of Lebanon's best-known comedy performers, recognized for stage characters, television presence, theatre work, and live performances that connect Lebanese humor with a wider Arab audience.",
         "ar": "ماريو باسيل من أبرز الوجوه الكوميدية في لبنان، معروف بشخصياته المسرحية وحضوره التلفزيوني وأعماله المسرحية وعروضه المباشرة التي تنقل الفكاهة اللبنانية إلى جمهور عربي أوسع."
       },
+      "ctaLabel": {
+        "en": "Comedy Night",
+        "ar": "كوميدي نايت"
+      },
+      "cards": [
+        {
+          "title": {
+            "en": "Comedy Night",
+            "ar": "كوميدي نايت"
+          },
+          "body": {
+            "en": "Long-running stage and TV comedy brand.",
+            "ar": "علامة كوميدية مستمرة على المسرح والتلفزيون."
+          }
+        },
+        {
+          "title": {
+            "en": "TV / Theatre",
+            "ar": "تلفزيون / مسرح"
+          },
+          "body": {
+            "en": "Characters, sketches, theatre shows, and screen appearances.",
+            "ar": "شخصيات واسكتشات وعروض مسرحية وحضور تلفزيوني."
+          }
+        },
+        {
+          "title": {
+            "en": "Corporate Booking",
+            "ar": "حجوزات الشركات"
+          },
+          "body": {
+            "en": "Private events, festivals, diaspora shows, and brand nights.",
+            "ar": "فعاليات خاصة ومهرجانات وعروض اغتراب وسهرات علامات تجارية."
+          }
+        }
+      ],
       "status": "published"
     },
     {
@@ -90,6 +126,10 @@
       "body": {
         "en": "Corporate events, theatre nights, private celebrations, festivals, and diaspora shows can be requested through the booking form.",
         "ar": "يمكن طلب ماريو للفعاليات الشركاتية، العروض المسرحية، المناسبات الخاصة، المهرجانات، وعروض الاغتراب عبر نموذج الحجز."
+      },
+      "ctaLabel": {
+        "en": "Send inquiry",
+        "ar": "إرسال الطلب"
       },
       "status": "published"
     }
@@ -201,90 +241,94 @@
     },
     {
       "title": {
-        "en": "Stand-up moments",
-        "ar": "لحظات ستاند أب"
+        "en": "Comedy Night Zero",
+        "ar": "كوميدي نايت زيرو"
       },
-      "source": "Instagram",
-      "url": "https://www.instagram.com/mariobassilofficial/?hl=en",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=ZJJSTjpqlQ4",
       "category": {
-        "en": "Reels and social clips",
-        "ar": "ريلز ومقاطع اجتماعية"
+        "en": "Stage show clip",
+        "ar": "مقطع من عرض مسرحي"
       }
     },
     {
       "title": {
-        "en": "Fan updates",
-        "ar": "أخبار الجمهور"
+        "en": "Comedy Night Season 2",
+        "ar": "كوميدي نايت الموسم الثاني"
       },
-      "source": "Facebook",
-      "url": "https://www.facebook.com/mario.bassil.comedian/",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=qLqv8qkJ3q8",
       "category": {
-        "en": "Announcements",
-        "ar": "إعلانات"
+        "en": "Full episode archive",
+        "ar": "أرشيف حلقة كاملة"
       }
     }
   ],
   "press": [
     {
       "title": {
-        "en": "Press kit placeholder",
-        "ar": "ملف صحفي مبدئي"
+        "en": "Mario Bassil's Interview with El Fann",
+        "ar": "مقابلة ماريو باسيل مع الفن"
       },
-      "outlet": "Management",
-      "url": "#press-kit",
-      "type": "Download"
+      "outlet": "Mario Bassil Official",
+      "url": "https://www.youtube.com/watch?v=afM3LCcJslk",
+      "type": "YouTube"
     },
     {
       "title": {
-        "en": "Interview archive",
-        "ar": "أرشيف المقابلات"
+        "en": "Mario Bassil's Interview with El Fann Part 2",
+        "ar": "مقابلة ماريو باسيل مع الفن - الجزء الثاني"
       },
-      "outlet": "Media",
-      "url": "#interviews",
-      "type": "Interview"
+      "outlet": "Mario Bassil Official",
+      "url": "https://www.youtube.com/watch?v=9CLj_p8vjnk",
+      "type": "YouTube"
     },
     {
       "title": {
-        "en": "Tour city SEO notes",
-        "ar": "ملاحظات SEO للمدن"
+        "en": "Mario Bassil Interview with Jad Wehbe",
+        "ar": "مقابلة ماريو باسيل مع جاد وهبة"
       },
-      "outlet": "CMS",
-      "url": "#seo",
-      "type": "Article"
+      "outlet": "Mario Bassil Official",
+      "url": "https://www.youtube.com/@mariobassilofficial/videos",
+      "type": "YouTube"
     }
   ],
   "gallery": [
     {
       "label": {
-        "en": "Hero portrait slot",
-        "ar": "مساحة صورة رئيسية"
+        "en": "Comedy Night Season 1",
+        "ar": "كوميدي نايت الموسم الأول"
       },
+      "image": "https://img.youtube.com/vi/kijjTW_cwNw/hqdefault.jpg",
       "tone": "from-red-500 to-amber-300"
     },
     {
       "label": {
-        "en": "Stage photo slot",
-        "ar": "مساحة صورة المسرح"
+        "en": "Comedy Night Zero",
+        "ar": "كوميدي نايت زيرو"
       },
+      "image": "https://img.youtube.com/vi/ZJJSTjpqlQ4/hqdefault.jpg",
       "tone": "from-violet-500 to-fuchsia-400"
     },
     {
       "label": {
-        "en": "Poster slot",
-        "ar": "مساحة بوستر"
+        "en": "Comedy Night Season 2",
+        "ar": "كوميدي نايت الموسم الثاني"
       },
+      "image": "https://img.youtube.com/vi/qLqv8qkJ3q8/hqdefault.jpg",
       "tone": "from-cyan-400 to-blue-600"
     },
     {
       "label": {
-        "en": "Press image slot",
-        "ar": "مساحة صورة صحفية"
+        "en": "Comedy Night Full Show",
+        "ar": "عرض كوميدي نايت الكامل"
       },
+      "image": "https://img.youtube.com/vi/oFUyTb4D13I/hqdefault.jpg",
       "tone": "from-lime-300 to-emerald-600"
     }
   ],
   "contacts": {
-    "email": "rim@vzblt.com",
+    "email": "contact@mariobassil.com",
     "facebook": "https://www.facebook.com/mario.bassil.comedian/",
     "instagram": "https://www.instagram.com/mariobassilofficial/?hl=en"
   },

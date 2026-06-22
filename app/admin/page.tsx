@@ -11,6 +11,8 @@ const blankSection: EditableSection = {
   type: "text",
   title: { en: "New editable page section", ar: "قسم جديد قابل للتعديل" },
   body: { en: "Write English content here.", ar: "اكتب المحتوى العربي هنا." },
+  ctaLabel: { en: "Learn more", ar: "اعرف المزيد" },
+  cards: [],
   status: "draft",
 };
 
@@ -90,6 +92,23 @@ export default function AdminPage() {
     saveDraft(next);
   }
 
+  function updateNav(index: number, field: "label" | "href", value: string) {
+    const nav = content.nav.map((item, itemIndex) => {
+      if (itemIndex !== index) {
+        return item;
+      }
+
+      if (field === "href") {
+        return { ...item, href: value };
+      }
+
+      return { ...item, label: { ...item.label, [activeLanguage]: value } };
+    });
+    const next = { ...content, nav };
+    setContent(next);
+    saveDraft(next);
+  }
+
   function updateSection(index: number, patch: Partial<EditableSection>) {
     const nextSections = content.sections.map((section, itemIndex) =>
       itemIndex === index ? { ...section, ...patch } : section,
@@ -103,6 +122,29 @@ export default function AdminPage() {
     const section = content.sections[index];
     updateSection(index, {
       [field]: { ...section[field], [activeLanguage]: value },
+    });
+  }
+
+  function updateSectionCard(index: number, cardIndex: number, field: "title" | "body", value: string) {
+    const section = content.sections[index];
+    const cards = (section.cards ?? []).map((card, itemIndex) =>
+      itemIndex === cardIndex
+        ? { ...card, [field]: { ...card[field], [activeLanguage]: value } }
+        : card,
+    );
+    updateSection(index, { cards });
+  }
+
+  function addSectionCard(index: number) {
+    const section = content.sections[index];
+    updateSection(index, {
+      cards: [
+        ...(section.cards ?? []),
+        {
+          title: { en: "New card", ar: "بطاقة جديدة" },
+          body: { en: "Write card content.", ar: "اكتب محتوى البطاقة." },
+        },
+      ],
     });
   }
 
@@ -137,6 +179,19 @@ export default function AdminPage() {
         : section,
     );
     updatePage(index, { sections });
+  }
+
+  function addPageSection(index: number) {
+    const page = content.pages[index];
+    updatePage(index, {
+      sections: [
+        ...page.sections,
+        {
+          heading: { en: "New section", ar: "قسم جديد" },
+          body: { en: "Write page section content.", ar: "اكتب محتوى القسم." },
+        },
+      ],
+    });
   }
 
   function addPage() {
@@ -178,6 +233,19 @@ export default function AdminPage() {
     saveDraft(next);
   }
 
+  function updateGallery(index: number, patch: Partial<SiteContent["gallery"][number]>) {
+    const gallery = content.gallery.map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item));
+    const next = { ...content, gallery };
+    setContent(next);
+    saveDraft(next);
+  }
+
+  function updateContact(field: keyof SiteContent["contacts"], value: string) {
+    const next = { ...content, contacts: { ...content.contacts, [field]: value } };
+    setContent(next);
+    saveDraft(next);
+  }
+
   return (
     <main className="min-h-screen bg-[#f4f1ea] text-[#171717]">
       <header className="sticky top-0 z-10 border-b border-black/10 bg-[#f4f1ea]/95 px-5 py-4 backdrop-blur">
@@ -212,7 +280,7 @@ export default function AdminPage() {
       <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 lg:grid-cols-[240px_1fr]">
         <aside className="h-fit rounded-lg border border-black/10 bg-white p-4">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-black/40">Editable collections</p>
-          {["Hero", "Pages / Sections", "CMS Pages", "Events", "Videos", "Gallery", "Press", "Booking", "SEO", "Analytics"].map((item) => (
+          {["Hero", "Navigation", "Pages / Sections", "CMS Pages", "Events", "Videos", "Gallery", "Press", "Booking", "SEO", "Analytics"].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-")}`} className="mt-3 block rounded-md px-3 py-2 text-sm font-bold hover:bg-black hover:text-white">
               {item}
             </a>
@@ -244,6 +312,15 @@ export default function AdminPage() {
             </div>
           </EditorPanel>
 
+          <EditorPanel id="navigation" title="Navigation">
+            {content.nav.map((item, index) => (
+              <div key={`${item.href}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 sm:grid-cols-2">
+                <Field label="Label" value={item.label[activeLanguage]} onChange={(value) => updateNav(index, "label", value)} />
+                <Field label="Href" value={item.href} onChange={(value) => updateNav(index, "href", value)} />
+              </div>
+            ))}
+          </EditorPanel>
+
           <EditorPanel id="pages-sections" title="Pages / Sections">
             <div className="flex justify-end">
               <button type="button" onClick={addSection} className="rounded-md bg-black px-4 py-3 text-sm font-black text-white">
@@ -270,6 +347,23 @@ export default function AdminPage() {
                   </div>
                   <Field label="Title" value={section.title[activeLanguage]} onChange={(value) => updateSectionText(index, "title", value)} />
                   <Area label="Body" value={section.body[activeLanguage]} onChange={(value) => updateSectionText(index, "body", value)} />
+                  <Field label="CTA label" value={section.ctaLabel?.[activeLanguage] ?? ""} onChange={(value) => updateSection(index, { ctaLabel: { ...(section.ctaLabel ?? { en: "", ar: "" }), [activeLanguage]: value } })} />
+                  <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Cards</h3>
+                      <button type="button" onClick={() => addSectionCard(index)} className="rounded-md bg-black px-3 py-2 text-xs font-black text-white">
+                        Add card
+                      </button>
+                    </div>
+                    <div className="grid gap-3">
+                      {(section.cards ?? []).map((card, cardIndex) => (
+                        <div key={`${section.id}-${cardIndex}`} className="grid gap-3 sm:grid-cols-2">
+                          <Field label="Card title" value={card.title[activeLanguage]} onChange={(value) => updateSectionCard(index, cardIndex, "title", value)} />
+                          <Field label="Card body" value={card.body[activeLanguage]} onChange={(value) => updateSectionCard(index, cardIndex, "body", value)} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -287,6 +381,11 @@ export default function AdminPage() {
                   <Field label="Slug" value={page.slug} onChange={(value) => updatePage(index, { slug: value })} />
                   <Field label="Title" value={page.title[activeLanguage]} onChange={(value) => updatePageText(index, "title", value)} />
                   <Field label="Summary" value={page.summary[activeLanguage]} onChange={(value) => updatePageText(index, "summary", value)} />
+                </div>
+                <div className="mt-4 flex justify-end">
+                  <button type="button" onClick={() => addPageSection(index)} className="rounded-md border border-black/15 bg-white px-3 py-2 text-xs font-black">
+                    Add page section
+                  </button>
                 </div>
                 {page.sections.map((section, sectionIndex) => (
                   <div key={`${page.slug}-${sectionIndex}`} className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -308,7 +407,7 @@ export default function AdminPage() {
               <div key={`${event.slug}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4">
                 <div className="grid gap-3 lg:grid-cols-4">
                   <Field label="Event slug" value={event.slug} onChange={(value) => updateEvent(index, { slug: value })} />
-                  <Field label="Date" value={event.date} onChange={(value) => updateEvent(index, { date: value })} />
+                  <Field label="Date" type="date" value={event.date} onChange={(value) => updateEvent(index, { date: value })} />
                   <Field label="Start time" value={event.startTime} onChange={(value) => updateEvent(index, { startTime: value })} />
                   <Field label="End time" value={event.endTime} onChange={(value) => updateEvent(index, { endTime: value })} />
                 </div>
@@ -346,16 +445,26 @@ export default function AdminPage() {
                 <Field label="Title" value={item.title[activeLanguage]} onChange={(value) => updatePress(index, { title: { ...item.title, [activeLanguage]: value } })} />
                 <Field label="Outlet" value={item.outlet} onChange={(value) => updatePress(index, { outlet: value })} />
                 <Field label="URL" value={item.url} onChange={(value) => updatePress(index, { url: value })} />
-                <Select label="Type" value={item.type} options={["Interview", "Article", "Download"]} onChange={(value) => updatePress(index, { type: value as PressItem["type"] })} />
+                <Select label="Type" value={item.type} options={["Interview", "Article", "YouTube"]} onChange={(value) => updatePress(index, { type: value as PressItem["type"] })} />
+              </div>
+            ))}
+          </EditorPanel>
+
+          <EditorPanel id="gallery" title="Gallery">
+            {content.gallery.map((item, index) => (
+              <div key={`${item.image}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-3">
+                <Field label="Label" value={item.label[activeLanguage]} onChange={(value) => updateGallery(index, { label: { ...item.label, [activeLanguage]: value } })} />
+                <Field label="Image URL" value={item.image} onChange={(value) => updateGallery(index, { image: value })} />
+                <Field label="Fallback gradient" value={item.tone} onChange={(value) => updateGallery(index, { tone: value })} />
               </div>
             ))}
           </EditorPanel>
 
           <EditorPanel id="booking" title="Booking / Contacts">
             <div className="grid gap-3 sm:grid-cols-3">
-              <Field label="Booking email" value={content.contacts.email} onChange={(value) => setContent({ ...content, contacts: { ...content.contacts, email: value } })} />
-              <Field label="Instagram" value={content.contacts.instagram} onChange={(value) => setContent({ ...content, contacts: { ...content.contacts, instagram: value } })} />
-              <Field label="Facebook" value={content.contacts.facebook} onChange={(value) => setContent({ ...content, contacts: { ...content.contacts, facebook: value } })} />
+              <Field label="Booking email" type="email" value={content.contacts.email} onChange={(value) => updateContact("email", value)} />
+              <Field label="Instagram" value={content.contacts.instagram} onChange={(value) => updateContact("instagram", value)} />
+              <Field label="Facebook" value={content.contacts.facebook} onChange={(value) => updateContact("facebook", value)} />
             </div>
           </EditorPanel>
 
@@ -394,11 +503,11 @@ function EditorPanel({ id, title, children }: { id: string; title: string; child
   );
 }
 
-function Field({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
+function Field({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (value: string) => void; type?: string }) {
   return (
     <label className="grid gap-2 text-sm font-bold text-black/62">
       {label}
-      <input value={value} onChange={(event) => onChange(event.target.value)} className="h-11 rounded-md border border-black/15 bg-white px-3 text-black outline-none focus:border-black" />
+      <input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="h-11 rounded-md border border-black/15 bg-white px-3 text-black outline-none focus:border-black" />
     </label>
   );
 }

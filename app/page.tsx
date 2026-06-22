@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { initialContent, Language, t } from "./content";
@@ -12,7 +12,10 @@ const languageLabels: Record<Language, string> = {
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
+  const [formError, setFormError] = useState("");
   const isArabic = language === "ar";
+  const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
+  const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
 
   const dateFormatter = useMemo(
     () =>
@@ -23,6 +26,25 @@ export default function Home() {
       }),
     [isArabic],
   );
+
+  function submitInquiry(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.checkValidity()) {
+      setFormError(isArabic ? "يرجى تعبئة كل الحقول المطلوبة بشكل صحيح." : "Please complete all required fields with valid values.");
+      form.reportValidity();
+      return;
+    }
+
+    const data = new FormData(form);
+    const body = Array.from(data.entries())
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
+
+    setFormError("");
+    window.location.href = `mailto:${initialContent.contacts.email}?subject=${encodeURIComponent("Mario Bassil booking inquiry")}&body=${encodeURIComponent(body)}`;
+  }
 
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
@@ -65,12 +87,6 @@ export default function Home() {
                   {languageLabels[key]}
                 </button>
               ))}
-              <Link
-                href="/admin/"
-                className="hidden rounded-md border border-white/15 px-3 py-2 text-sm font-bold text-white/80 transition hover:border-amber-300 hover:text-amber-300 sm:block"
-              >
-                CMS
-              </Link>
             </div>
           </header>
 
@@ -133,21 +149,22 @@ export default function Home() {
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-600">{isArabic ? "نبذة" : "About"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
-              {t(initialContent.sections[0].title, language)}
+              {t(aboutSection.title, language)}
             </h2>
           </div>
           <div className="space-y-6 text-lg leading-9 text-black/72">
-            <p>{t(initialContent.sections[0].body, language)}</p>
+            <p>{t(aboutSection.body, language)}</p>
             <div className="grid gap-3 sm:grid-cols-3">
-              {["Comedy Night", "TV / Theatre", "Corporate Booking"].map((item) => (
-                <div key={item} className="rounded-md border border-black/10 bg-white p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">CMS block</p>
-                  <p className="mt-2 text-lg font-black text-black">{item}</p>
+              {(aboutSection.cards ?? []).map((item) => (
+                <div key={item.title.en} className="rounded-md border border-black/10 bg-white p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">{isArabic ? "قابل للتعديل" : "Editable"}</p>
+                  <p className="mt-2 text-lg font-black text-black">{t(item.title, language)}</p>
+                  <p className="mt-2 text-sm leading-6 text-black/55">{t(item.body, language)}</p>
                 </div>
               ))}
             </div>
             <Link href="/comedy-night/" className="inline-flex rounded-md bg-black px-5 py-3 text-sm font-black uppercase text-white">
-              {isArabic ? "صفحة كوميدي نايت" : "CMS page: Comedy Night"}
+              {aboutSection.ctaLabel ? t(aboutSection.ctaLabel, language) : (isArabic ? "صفحة كوميدي نايت" : "Comedy Night")}
             </Link>
           </div>
         </div>
@@ -195,9 +212,7 @@ export default function Home() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {initialContent.media.map((item) => (
               <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
-                <div className="flex aspect-video items-center justify-center rounded-md bg-black text-white">
-                  <span className="text-sm font-black uppercase tracking-[0.22em]">{item.source}</span>
-                </div>
+                <YouTubePreview url={item.url} label={item.source} />
                 <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
                 <p className="mt-2 text-black/62">{t(item.category, language)}</p>
               </a>
@@ -211,7 +226,11 @@ export default function Home() {
           <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-300">{isArabic ? "المعرض" : "Gallery"}</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {initialContent.gallery.map((item) => (
-              <div key={item.tone} className={`flex aspect-[4/5] items-end rounded-lg bg-gradient-to-br ${item.tone} p-5`}>
+              <div
+                key={item.image}
+                className={`flex aspect-[4/5] items-end overflow-hidden rounded-lg bg-gradient-to-br ${item.tone} bg-cover bg-center p-5`}
+                style={item.image ? { backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.74)), url(${item.image})` } : undefined}
+              >
                 <p className="rounded-md bg-black/55 px-3 py-2 text-sm font-black uppercase text-white backdrop-blur">{t(item.label, language)}</p>
               </div>
             ))}
@@ -225,7 +244,8 @@ export default function Home() {
           <h2 className="mt-4 text-4xl font-black sm:text-5xl">{isArabic ? "مقابلات، مقالات، وملف صحفي" : "Interviews, articles, and press kit"}</h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {initialContent.press.map((item) => (
-              <a key={item.title.en} href={item.url} className="rounded-lg border border-black/10 bg-white p-5">
+              <a key={item.title.en} href={item.url} className="rounded-lg border border-black/10 bg-white p-5 transition hover:-translate-y-1 hover:border-black">
+                <YouTubePreview url={item.url} label={item.type} />
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">{item.type} · {item.outlet}</p>
                 <h3 className="mt-4 text-2xl font-black">{t(item.title, language)}</h3>
               </a>
@@ -238,34 +258,34 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-300">{isArabic ? "الحجز" : "Book Mario"}</p>
-            <h2 className="mt-4 text-4xl font-black sm:text-5xl">{t(initialContent.sections[1].title, language)}</h2>
-            <p className="mt-5 text-lg leading-8 text-white/70">{t(initialContent.sections[1].body, language)}</p>
-            <div className="mt-6 space-y-2 text-white/70">
+            <h2 className="mt-4 text-4xl font-black sm:text-5xl">{t(bookingSection.title, language)}</h2>
+            <p className="mt-5 text-lg leading-8 text-white/70">{t(bookingSection.body, language)}</p>
+            <div className="mt-6 flex items-center gap-3 text-white/70">
               <a href={`mailto:${initialContent.contacts.email}`} className="block font-black text-white">{initialContent.contacts.email}</a>
-              <a href={initialContent.contacts.instagram} className="block">Instagram</a>
-              <a href={initialContent.contacts.facebook} className="block">Facebook</a>
+              <a href={initialContent.contacts.instagram} aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-amber-300 hover:text-amber-300">
+                <InstagramIcon />
+              </a>
+              <a href={initialContent.contacts.facebook} aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-amber-300 hover:text-amber-300">
+                <FacebookIcon />
+              </a>
             </div>
           </div>
-          <form className="grid gap-3 rounded-lg border border-white/15 bg-white/[0.04] p-5">
-            {[
-              isArabic ? "نوع الفعالية" : "Event type",
-              isArabic ? "التاريخ" : "Date",
-              isArabic ? "الدولة / المدينة" : "Country / city",
-              isArabic ? "عدد الحضور" : "Audience size",
-              isArabic ? "نطاق الميزانية" : "Budget range",
-              isArabic ? "الاسم والبريد والهاتف" : "Name, email, phone",
-            ].map((label) => (
-              <label key={label} className="grid gap-2 text-sm font-bold text-white/70">
-                {label}
-                <input className="h-12 rounded-md border border-white/12 bg-black px-3 text-white outline-none focus:border-amber-300" />
-              </label>
-            ))}
+          <form onSubmit={submitInquiry} className="grid gap-3 rounded-lg border border-white/15 bg-white/[0.04] p-5">
+            <InquiryField name="eventType" label={isArabic ? "نوع الفعالية" : "Event type"} required />
+            <InquiryField name="date" label={isArabic ? "التاريخ" : "Date"} type="date" required />
+            <InquiryField name="location" label={isArabic ? "الدولة / المدينة" : "Country / city"} required />
+            <InquiryField name="audienceSize" label={isArabic ? "عدد الحضور" : "Audience size"} type="number" required min="1" />
+            <InquiryField name="budget" label={isArabic ? "نطاق الميزانية" : "Budget range"} required />
+            <InquiryField name="name" label={isArabic ? "الاسم" : "Name"} required />
+            <InquiryField name="email" label={isArabic ? "البريد الإلكتروني" : "Email"} type="email" required />
+            <InquiryField name="phone" label={isArabic ? "الهاتف" : "Phone"} type="tel" required />
             <label className="grid gap-2 text-sm font-bold text-white/70">
               {isArabic ? "تفاصيل إضافية" : "Additional notes"}
-              <textarea className="min-h-28 rounded-md border border-white/12 bg-black p-3 text-white outline-none focus:border-amber-300" />
+              <textarea name="notes" className="min-h-28 rounded-md border border-white/12 bg-black p-3 text-white outline-none focus:border-amber-300" />
             </label>
-            <button type="button" className="mt-2 rounded-md bg-amber-300 px-5 py-4 text-sm font-black uppercase text-black">
-              {isArabic ? "إرسال الطلب" : "Send inquiry"}
+            {formError ? <p className="text-sm font-bold text-red-300">{formError}</p> : null}
+            <button type="submit" className="mt-2 rounded-md bg-amber-300 px-5 py-4 text-sm font-black uppercase text-black">
+              {bookingSection.ctaLabel ? t(bookingSection.ctaLabel, language) : (isArabic ? "إرسال الطلب" : "Send inquiry")}
             </button>
           </form>
         </div>
@@ -277,35 +297,12 @@ export default function Home() {
             <h2 className="text-3xl font-black">{isArabic ? "النشرة البريدية" : "Newsletter"}</h2>
             <p className="mt-2 text-black/60">{isArabic ? "تحديثات العروض والجولات والروابط الجديدة." : "Show updates, tour alerts, and new media links."}</p>
           </div>
-          <form className="flex flex-col gap-3 sm:flex-row">
-            <input placeholder={isArabic ? "البريد الإلكتروني" : "Email address"} className="h-12 min-w-72 rounded-md border border-black/15 px-3" />
-            <button type="button" className="rounded-md bg-black px-5 py-3 text-sm font-black uppercase text-white">
+          <form className="flex flex-col gap-3 sm:flex-row" onSubmit={(event) => event.preventDefault()}>
+            <input type="email" required placeholder={isArabic ? "البريد الإلكتروني" : "Email address"} className="h-12 min-w-72 rounded-md border border-black/15 px-3" />
+            <button type="submit" className="rounded-md bg-black px-5 py-3 text-sm font-black uppercase text-white">
               {isArabic ? "اشترك" : "Subscribe"}
             </button>
           </form>
-        </div>
-      </section>
-
-      <section className="bg-[#111111]">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-300">
-            {isArabic ? "صفحات CMS" : "CMS pages"}
-          </p>
-          <h2 className="mt-4 text-4xl font-black sm:text-5xl">
-            {isArabic ? "صفحات وأقسام قابلة للإضافة" : "Add new pages and sections"}
-          </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {initialContent.pages.map((page) => (
-              <a
-                key={page.slug}
-                href={`${page.slug}/`}
-                className="rounded-lg border border-white/12 bg-white/[0.04] p-5 transition hover:border-amber-300"
-              >
-                <h3 className="text-2xl font-black">{t(page.title, language)}</h3>
-                <p className="mt-3 leading-7 text-white/62">{t(page.summary, language)}</p>
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -316,5 +313,77 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+function InquiryField({
+  label,
+  name,
+  type = "text",
+  required = false,
+  min,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  min?: string;
+}) {
+  return (
+    <label className="grid gap-2 text-sm font-bold text-white/70">
+      {label}
+      <input
+        name={name}
+        type={type}
+        required={required}
+        min={min}
+        className="h-12 rounded-md border border-white/12 bg-black px-3 text-white outline-none focus:border-amber-300"
+      />
+    </label>
+  );
+}
+
+function YouTubePreview({ url, label }: { url: string; label: string }) {
+  const videoId = getYouTubeId(url);
+
+  if (!videoId) {
+    return (
+      <div className="flex aspect-video items-center justify-center rounded-md bg-black text-white">
+        <span className="text-sm font-black uppercase tracking-[0.22em]">{label}</span>
+      </div>
+    );
+  }
+
+  return (
+    <iframe
+      title={`${label} video`}
+      src={`https://www.youtube.com/embed/${videoId}`}
+      className="aspect-video w-full rounded-md bg-black"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+    />
+  );
+}
+
+function getYouTubeId(url: string) {
+  const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
+  return match?.[1] ?? "";
+}
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-2">
+      <rect x="4" y="4" width="16" height="16" rx="5" />
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M17.5 6.8h.01" />
+    </svg>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
+      <path d="M14.1 8.2V6.9c0-.7.5-1 1.1-1h1.5V3.3A20 20 0 0 0 14.5 3c-2.2 0-3.7 1.3-3.7 3.7v1.5H8.3V11h2.5v10h3.1V11h2.5l.4-2.8h-2.7Z" />
+    </svg>
   );
 }

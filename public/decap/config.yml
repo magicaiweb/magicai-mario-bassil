@@ -17,7 +17,17 @@ collections:
         file: content/site.json
         format: json
         fields:
-          - { label: Navigation, name: nav, widget: list }
+          - label: Navigation
+            name: nav
+            widget: list
+            fields:
+              - label: Label
+                name: label
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Arabic, name: ar, widget: string }
+              - { label: Link, name: href, widget: string }
           - label: Hero
             name: hero
             widget: object
@@ -25,35 +35,67 @@ collections:
               - label: Eyebrow
                 name: eyebrow
                 widget: object
-                fields:
+                fields: &localized_string
                   - { label: English, name: en, widget: string }
                   - { label: Arabic, name: ar, widget: string }
               - label: Title
                 name: title
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - label: Subtitle
                 name: subtitle
                 widget: object
-                fields:
+                fields: &localized_text
                   - { label: English, name: en, widget: text }
                   - { label: Arabic, name: ar, widget: text }
               - { label: Hero Image URL, name: image, widget: string }
               - label: Primary CTA
                 name: primaryCta
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - label: Secondary CTA
                 name: secondaryCta
                 widget: object
+                fields: *localized_string
+          - label: Sections
+            name: sections
+            widget: list
+            fields:
+              - { label: Slug / ID, name: id, widget: string }
+              - label: Section type
+                name: type
+                widget: select
+                options: ["hero", "text", "events", "media", "gallery", "press", "form"]
+              - label: Title
+                name: title
+                widget: object
+                fields: *localized_string
+              - label: Body
+                name: body
+                widget: object
+                fields: *localized_text
+              - label: CTA label
+                name: ctaLabel
+                widget: object
+                required: false
+                fields: *localized_string
+              - label: Cards
+                name: cards
+                widget: list
+                required: false
                 fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
-          - { label: Sections, name: sections, widget: list }
+                  - label: Title
+                    name: title
+                    widget: object
+                    fields: *localized_string
+                  - label: Body
+                    name: body
+                    widget: object
+                    fields: *localized_text
+              - label: Status
+                name: status
+                widget: select
+                options: ["published", "draft"]
           - label: Events
             name: events
             widget: list
@@ -65,33 +107,23 @@ collections:
               - label: Event Title
                 name: label
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - label: City / Location
                 name: city
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - label: Venue
                 name: venue
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - label: Description
                 name: description
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Arabic, name: ar, widget: text }
+                fields: *localized_text
               - label: Ticket Price
                 name: ticketPrice
                 widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Arabic, name: ar, widget: string }
+                fields: *localized_string
               - { label: Ticket URL, name: ticketUrl, widget: string }
               - { label: Poster Image, name: posterImage, widget: image, required: false }
               - { label: Poster Fallback Tone, name: posterTone, widget: string, required: false }
@@ -99,8 +131,76 @@ collections:
                 name: status
                 widget: select
                 options: ["on-sale", "soon", "past"]
-          - { label: Media, name: media, widget: list }
-          - { label: Gallery, name: gallery, widget: list }
-          - { label: Press, name: press, widget: list }
-          - { label: Contacts, name: contacts, widget: object }
-          - { label: Custom Pages, name: pages, widget: list }
+          - label: Videos
+            name: media
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: object
+                fields: *localized_string
+              - label: Source
+                name: source
+                widget: select
+                options: ["YouTube", "Instagram", "Facebook"]
+              - { label: URL, name: url, widget: string }
+              - label: Category
+                name: category
+                widget: object
+                fields: *localized_string
+          - label: Gallery
+            name: gallery
+            widget: list
+            fields:
+              - label: Label
+                name: label
+                widget: object
+                fields: *localized_string
+              - { label: Image URL, name: image, widget: string }
+              - { label: Fallback Gradient, name: tone, widget: string }
+          - label: Press / YouTube
+            name: press
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: object
+                fields: *localized_string
+              - { label: Outlet, name: outlet, widget: string }
+              - { label: URL, name: url, widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options: ["Interview", "Article", "YouTube"]
+          - label: Contacts
+            name: contacts
+            widget: object
+            fields:
+              - { label: Email, name: email, widget: string }
+              - { label: Facebook, name: facebook, widget: string }
+              - { label: Instagram, name: instagram, widget: string }
+          - label: Custom Pages
+            name: pages
+            widget: list
+            fields:
+              - { label: Slug, name: slug, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields: *localized_string
+              - label: Summary
+                name: summary
+                widget: object
+                fields: *localized_text
+              - label: Sections
+                name: sections
+                widget: list
+                fields:
+                  - label: Heading
+                    name: heading
+                    widget: object
+                    fields: *localized_string
+                  - label: Body
+                    name: body
+                    widget: object
+                    fields: *localized_text

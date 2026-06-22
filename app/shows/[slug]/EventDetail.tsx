@@ -24,10 +24,10 @@ export function EventDetail({ event }: { event: EventItem }) {
   );
 
   return (
-    <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#f8f7f4] text-[#171717]">
-      <header className="border-b border-black/10 bg-white">
+    <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
+      <header className="border-b border-white/10 bg-black/55 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
-          <Link href="/#shows" className="text-sm font-black uppercase tracking-[0.22em] text-red-600">
+          <Link href="/#shows" className="text-sm font-black uppercase tracking-[0.22em] text-amber-300">
             Mario Bassil
           </Link>
           <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ export function EventDetail({ event }: { event: EventItem }) {
                 type="button"
                 onClick={() => setLanguage(key)}
                 className={`h-9 min-w-10 rounded-md border px-3 text-sm font-black transition ${
-                  language === key ? "border-black bg-black text-white" : "border-black/15 bg-white text-black"
+                  language === key ? "border-amber-300 bg-amber-300 text-black" : "border-white/15 bg-white/5 text-white"
                 }`}
               >
                 {languageLabels[key]}
@@ -47,11 +47,13 @@ export function EventDetail({ event }: { event: EventItem }) {
         </div>
       </header>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[370px_1fr] lg:gap-9 lg:py-16">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(255,207,64,0.2),transparent_30%),radial-gradient(circle_at_86%_8%,rgba(255,53,94,0.2),transparent_32%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[370px_1fr] lg:gap-9 lg:py-16">
         <EventPoster event={event} language={language} />
 
         <article>
-          <div className="grid gap-5 border-b-4 border-red-500 pb-5 text-sm font-black text-black/78 md:grid-cols-3">
+          <div className="grid gap-5 border-b-4 border-amber-300 pb-5 text-sm font-black text-white/78 md:grid-cols-3">
             <EventMeta icon="calendar" label={formattedDate} />
             <EventMeta icon="clock" label={`${event.startTime} - ${event.endTime}`} />
             <EventMeta icon="pin" label={t(event.city, language)} />
@@ -61,35 +63,36 @@ export function EventDetail({ event }: { event: EventItem }) {
             <h1 className="text-4xl font-black leading-tight sm:text-5xl">
               {t(event.label, language)}
             </h1>
-            <p className="mt-2 text-xl font-bold text-black/62">
+            <p className="mt-2 text-xl font-bold text-white/62">
               {t(event.venue, language)}
             </p>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-black/68">
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-white/68">
               {t(event.description, language)}
             </p>
           </div>
 
           <div className="flex flex-col items-start gap-4">
-            <p className="text-2xl font-black tracking-normal text-red-500">
+            <p className="text-2xl font-black tracking-normal text-amber-300">
               {isArabic ? "سعر التذكرة: " : "Ticket Price : "}
               {t(event.ticketPrice, language)}
             </p>
             <div className="flex flex-wrap gap-3">
               <a
                 href={event.ticketUrl}
-                className="rounded-none border border-black bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-black hover:text-white"
+                className="rounded-md bg-amber-300 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               >
                 {isArabic ? "شراء تذكرة" : "Buy Ticket"}
               </a>
               <Link
                 href="/#book"
-                className="rounded-none border border-black/15 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:border-black"
+                className="rounded-md border border-white/15 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:border-amber-300 hover:text-amber-300"
               >
                 {isArabic ? "طلب حجز" : "Booking Inquiry"}
               </Link>
             </div>
           </div>
         </article>
+        </div>
       </section>
     </main>
   );
@@ -106,7 +109,7 @@ function EventPoster({ event, language }: { event: EventItem; language: Language
 
   return (
     <div
-      className={`relative flex aspect-[3/4] min-h-[420px] flex-col justify-between overflow-hidden bg-gradient-to-br ${event.posterTone} p-7 text-white shadow-xl`}
+      className={`relative flex aspect-[3/4] min-h-[420px] flex-col justify-between overflow-hidden rounded-lg border border-white/15 bg-gradient-to-br ${event.posterTone} p-7 text-white shadow-2xl`}
       style={posterStyle}
     >
       <div className="absolute inset-x-0 top-0 h-24 bg-black/25" />
@@ -132,7 +135,7 @@ function EventPoster({ event, language }: { event: EventItem; language: Language
 function EventMeta({ icon, label }: { icon: "calendar" | "clock" | "pin"; label: string }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="grid h-7 w-7 shrink-0 place-items-center text-black/52">
+      <span className="grid h-7 w-7 shrink-0 place-items-center text-amber-300">
         <Icon name={icon} />
       </span>
       <span>{label}</span>
