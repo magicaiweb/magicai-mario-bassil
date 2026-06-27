@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { EventItem, Language, t } from "../../content";
+import { EventItem, initialContent, Language, t } from "../../content";
 
 const languageLabels: Record<Language, string> = {
   en: "EN",
@@ -50,7 +50,7 @@ export function EventDetail({ event }: { event: EventItem }) {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(255,207,64,0.2),transparent_30%),radial-gradient(circle_at_86%_8%,rgba(255,53,94,0.2),transparent_32%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[370px_1fr] lg:gap-9 lg:py-16">
-        <EventPoster event={event} language={language} />
+        <EventPoster event={event} />
 
         <article>
           <div className="grid gap-5 border-b-4 border-amber-300 pb-5 text-sm font-black text-white/78 md:grid-cols-3">
@@ -98,37 +98,19 @@ export function EventDetail({ event }: { event: EventItem }) {
   );
 }
 
-function EventPoster({ event, language }: { event: EventItem; language: Language }) {
-  const posterStyle = event.posterImage
-    ? {
-        backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.62)), url(${event.posterImage})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }
-    : undefined;
+function EventPoster({ event }: { event: EventItem }) {
+  const posterImage = event.posterImage || initialContent.hero.image;
+  const posterStyle = {
+    backgroundImage: `url(${posterImage})`,
+    backgroundPosition: "center top",
+    backgroundSize: "cover",
+  };
 
   return (
     <div
-      className={`relative flex aspect-[3/4] min-h-[420px] flex-col justify-between overflow-hidden rounded-lg border border-white/15 bg-gradient-to-br ${event.posterTone} p-7 text-white shadow-2xl`}
+      className="relative aspect-[3/4] min-h-[420px] overflow-hidden rounded-lg bg-black shadow-2xl"
       style={posterStyle}
-    >
-      <div className="absolute inset-x-0 top-0 h-24 bg-black/25" />
-      <div className="relative">
-        <p className="text-xs font-black uppercase tracking-[0.26em] text-amber-200">
-          Mario Bassil Official
-        </p>
-        <h2 className="mt-8 text-5xl font-black uppercase leading-[0.92]">
-          {t(event.label, language)}
-        </h2>
-      </div>
-      <div className="relative rounded-md border border-white/20 bg-black/42 p-4 backdrop-blur">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-200">
-          {event.date}
-        </p>
-        <p className="mt-2 text-2xl font-black">{t(event.city, language)}</p>
-        <p className="mt-1 text-sm text-white/72">{t(event.venue, language)}</p>
-      </div>
-    </div>
+    />
   );
 }
 
