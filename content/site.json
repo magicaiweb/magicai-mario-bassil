@@ -303,6 +303,9 @@
         "ar": "كوميدي نايت الموسم الأول"
       },
       "image": "https://img.youtube.com/vi/kijjTW_cwNw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=kijjTW_cwNw",
+      "sortOrder": 1,
+      "status": "published",
       "tone": "from-red-500 to-amber-300"
     },
     {
@@ -311,6 +314,9 @@
         "ar": "كوميدي نايت زيرو"
       },
       "image": "https://img.youtube.com/vi/ZJJSTjpqlQ4/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=ZJJSTjpqlQ4",
+      "sortOrder": 2,
+      "status": "published",
       "tone": "from-violet-500 to-fuchsia-400"
     },
     {
@@ -319,6 +325,9 @@
         "ar": "كوميدي نايت الموسم الثاني"
       },
       "image": "https://img.youtube.com/vi/qLqv8qkJ3q8/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=qLqv8qkJ3q8",
+      "sortOrder": 3,
+      "status": "published",
       "tone": "from-cyan-400 to-blue-600"
     },
     {
@@ -327,6 +336,9 @@
         "ar": "عرض كوميدي نايت الكامل"
       },
       "image": "https://img.youtube.com/vi/oFUyTb4D13I/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=oFUyTb4D13I",
+      "sortOrder": 4,
+      "status": "published",
       "tone": "from-lime-300 to-emerald-600"
     }
   ],

@@ -48,6 +48,15 @@ export type PressItem = {
   type: "Interview" | "Article" | "YouTube";
 };
 
+export type GalleryItem = {
+  label: LocalizedText;
+  image: string;
+  url?: string;
+  sortOrder?: number;
+  status?: "published" | "draft";
+  tone: string;
+};
+
 export type PageItem = {
   slug: string;
   title: LocalizedText;
@@ -72,7 +81,7 @@ export type SiteContent = {
   events: EventItem[];
   media: MediaItem[];
   press: PressItem[];
-  gallery: { label: LocalizedText; image: string; tone: string }[];
+  gallery: GalleryItem[];
   contacts: {
     email: string;
     facebook: string;

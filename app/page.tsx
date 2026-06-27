@@ -179,15 +179,26 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-300">{isArabic ? "المعرض" : "Gallery"}</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {initialContent.gallery.map((item) => (
-              <div
-                key={item.image}
-                className={`flex aspect-[4/5] items-end overflow-hidden rounded-lg bg-gradient-to-br ${item.tone} bg-cover bg-center p-5`}
-                style={item.image ? { backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.74)), url(${item.image})` } : undefined}
-              >
-                <p className="rounded-md bg-black/55 px-3 py-2 text-sm font-black uppercase text-white backdrop-blur">{t(item.label, language)}</p>
-              </div>
-            ))}
+            {initialContent.gallery
+              .filter((item) => (item.status ?? "published") === "published")
+              .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+              .map((item) => {
+                const className = `flex aspect-[4/5] items-end overflow-hidden rounded-lg bg-gradient-to-br ${item.tone} bg-cover bg-center p-5 transition hover:-translate-y-1`;
+                const style = item.image ? { backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.74)), url(${item.image})` } : undefined;
+                const content = (
+                  <p className="rounded-md bg-black/55 px-3 py-2 text-sm font-black uppercase text-white backdrop-blur">{t(item.label, language)}</p>
+                );
+
+                return item.url ? (
+                  <a key={`${item.image}-${item.url}`} href={item.url} className={className} style={style}>
+                    {content}
+                  </a>
+                ) : (
+                  <div key={item.image} className={className} style={style}>
+                    {content}
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>

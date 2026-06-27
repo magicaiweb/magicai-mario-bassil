@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { EditableSection, EventItem, initialContent, Language, MediaItem, PageItem, PressItem, SiteContent } from "../content";
+import { EditableSection, EventItem, GalleryItem, initialContent, Language, MediaItem, PageItem, PressItem, SiteContent } from "../content";
 
 const storageKey = "mario-bassil-cms-draft";
 
@@ -233,7 +233,7 @@ export default function AdminPage() {
     saveDraft(next);
   }
 
-  function updateGallery(index: number, patch: Partial<SiteContent["gallery"][number]>) {
+  function updateGallery(index: number, patch: Partial<GalleryItem>) {
     const gallery = content.gallery.map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item));
     const next = { ...content, gallery };
     setContent(next);
@@ -453,9 +453,12 @@ export default function AdminPage() {
 
           <EditorPanel id="gallery" title="Gallery">
             {content.gallery.map((item, index) => (
-              <div key={`${item.image}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-3">
+              <div key={`${item.image}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-6">
                 <Field label="Label" value={item.label[activeLanguage]} onChange={(value) => updateGallery(index, { label: { ...item.label, [activeLanguage]: value } })} />
                 <Field label="Image URL" value={item.image} onChange={(value) => updateGallery(index, { image: value })} />
+                <Field label="Video URL" value={item.url ?? ""} onChange={(value) => updateGallery(index, { url: value })} />
+                <Field label="Sort order" type="number" value={String(item.sortOrder ?? index + 1)} onChange={(value) => updateGallery(index, { sortOrder: Number(value) })} />
+                <Select label="Status" value={item.status ?? "published"} options={["published", "draft"]} onChange={(value) => updateGallery(index, { status: value as GalleryItem["status"] })} />
                 <Field label="Fallback gradient" value={item.tone} onChange={(value) => updateGallery(index, { tone: value })} />
               </div>
             ))}
