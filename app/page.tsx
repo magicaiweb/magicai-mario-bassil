@@ -48,84 +48,46 @@ export default function Home() {
 
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
-      <section id="home" className="relative min-h-[92vh] overflow-hidden">
+      <header className="border-b border-white/10 bg-[#111111]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+          <a href="#home" className="text-sm font-black uppercase tracking-[0.28em] text-amber-300">
+            Mario Bassil
+          </a>
+          <nav className="hidden items-center gap-5 text-sm font-semibold text-white/78 lg:flex">
+            {initialContent.nav.map((item) => (
+              <a key={item.href} href={item.href} className="transition hover:text-amber-300">
+                {t(item.label, language)}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            {(Object.keys(languageLabels) as Language[]).map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setLanguage(key)}
+                className={`h-9 min-w-10 rounded-md border px-3 text-sm font-black transition ${
+                  language === key
+                    ? "border-amber-300 bg-amber-300 text-black"
+                    : "border-white/15 bg-white/5 text-white"
+                }`}
+              >
+                {languageLabels[key]}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <section id="home" className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-black">
         <Image
           src={initialContent.hero.image}
-          alt=""
+          alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 h-full w-full object-cover object-[56%_18%] opacity-55"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.82)_36%,rgba(0,0,0,0.42)_72%,rgba(0,0,0,0.7)_100%),linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.92))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,207,64,0.28),transparent_28%),radial-gradient(circle_at_82%_14%,rgba(255,53,94,0.28),transparent_30%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,transparent,#111111)]" />
-        <div className="relative mx-auto flex min-h-[92vh] max-w-7xl flex-col px-5 py-5 sm:px-8">
-          <header className="flex items-center justify-between gap-4 rounded-lg border border-white/15 bg-black/35 px-4 py-3 backdrop-blur">
-            <a href="#home" className="text-sm font-black uppercase tracking-[0.28em] text-amber-300">
-              Mario Bassil
-            </a>
-            <nav className="hidden items-center gap-5 text-sm font-semibold text-white/78 lg:flex">
-              {initialContent.nav.map((item) => (
-                <a key={item.href} href={item.href} className="transition hover:text-amber-300">
-                  {t(item.label, language)}
-                </a>
-              ))}
-            </nav>
-            <div className="flex items-center gap-2">
-              {(Object.keys(languageLabels) as Language[]).map((key) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setLanguage(key)}
-                  className={`h-9 min-w-10 rounded-md border px-3 text-sm font-black transition ${
-                    language === key
-                      ? "border-amber-300 bg-amber-300 text-black"
-                      : "border-white/15 bg-white/5 text-white"
-                  }`}
-                >
-                  {languageLabels[key]}
-                </button>
-              ))}
-            </div>
-          </header>
-
-          <div className="grid flex-1 items-center gap-10 py-12 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="max-w-3xl">
-              <p className="mb-5 max-w-2xl text-sm font-black uppercase tracking-[0.22em] text-amber-300">
-                {t(initialContent.hero.eyebrow, language)}
-              </p>
-              <h1 className="max-w-4xl text-6xl font-black leading-[0.92] tracking-normal text-white sm:text-7xl lg:text-8xl">
-                {t(initialContent.hero.title, language)}
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76 sm:text-xl">
-                {t(initialContent.hero.subtitle, language)}
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#book" className="rounded-md bg-amber-300 px-6 py-4 text-center text-sm font-black uppercase text-black">
-                  {t(initialContent.hero.primaryCta, language)}
-                </a>
-                <a
-                  href="#shows"
-                  className="rounded-md border border-white/18 px-6 py-4 text-center text-sm font-black uppercase text-white transition hover:border-white"
-                >
-                  {t(initialContent.hero.secondaryCta, language)}
-                </a>
-              </div>
-            </div>
-
-            <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/15 bg-black/50 shadow-2xl">
-              <Image
-                src={initialContent.hero.image}
-                alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
-              />
-            </div>
-          </div>
-        </div>
       </section>
 
       <section className="border-y border-white/10 bg-amber-300 text-black">
