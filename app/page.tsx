@@ -166,7 +166,7 @@ export default function Home() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {initialContent.media.map((item) => (
               <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
-                <YouTubePreview url={item.url} label={item.source} />
+                <MediaPreview url={item.url} label={item.source} thumbnailImage={item.thumbnailImage} />
                 <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
                 <p className="mt-2 text-black/62">{t(item.category, language)}</p>
               </a>
@@ -199,7 +199,7 @@ export default function Home() {
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {initialContent.press.map((item) => (
               <a key={item.title.en} href={item.url} className="rounded-lg border border-black/10 bg-white p-5 transition hover:-translate-y-1 hover:border-black">
-                <YouTubePreview url={item.url} label={item.type} />
+                <MediaPreview url={item.url} label={item.type} />
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">{item.type} · {item.outlet}</p>
                 <h3 className="mt-4 text-2xl font-black">{t(item.title, language)}</h3>
               </a>
@@ -297,8 +297,22 @@ function InquiryField({
   );
 }
 
-function YouTubePreview({ url, label }: { url: string; label: string }) {
+function MediaPreview({ url, label, thumbnailImage }: { url: string; label: string; thumbnailImage?: string }) {
   const videoId = getYouTubeId(url);
+  const previewImage = thumbnailImage || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "");
+
+  if (previewImage) {
+    return (
+      <div
+        className="flex aspect-video items-center justify-center overflow-hidden rounded-md bg-black bg-cover bg-center text-white"
+        style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.24)), url(${previewImage})` }}
+      >
+        <span className="rounded-full bg-black/72 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white">
+          {label}
+        </span>
+      </div>
+    );
+  }
 
   if (!videoId) {
     return (

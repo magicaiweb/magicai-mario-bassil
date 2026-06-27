@@ -37,6 +37,7 @@ export type MediaItem = {
   title: LocalizedText;
   source: "YouTube" | "Instagram" | "Facebook";
   url: string;
+  thumbnailImage?: string;
   category: LocalizedText;
 };
 

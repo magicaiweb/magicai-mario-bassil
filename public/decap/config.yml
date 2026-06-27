@@ -144,6 +144,7 @@ collections:
                 widget: select
                 options: ["YouTube", "Instagram", "Facebook"]
               - { label: URL, name: url, widget: string }
+              - { label: Thumbnail Image URL, name: thumbnailImage, widget: string, required: false }
               - label: Category
                 name: category
                 widget: object
