@@ -238,7 +238,9 @@
       "category": {
         "en": "TV and theatre archive",
         "ar": "أرشيف تلفزيوني ومسرحي"
-      }
+      },
+      "sortOrder": 1,
+      "status": "published"
     },
     {
       "title": {
@@ -251,7 +253,9 @@
       "category": {
         "en": "Stage show clip",
         "ar": "مقطع من عرض مسرحي"
-      }
+      },
+      "sortOrder": 2,
+      "status": "published"
     },
     {
       "title": {
@@ -264,7 +268,9 @@
       "category": {
         "en": "Full episode archive",
         "ar": "أرشيف حلقة كاملة"
-      }
+      },
+      "sortOrder": 3,
+      "status": "published"
     }
   ],
   "press": [

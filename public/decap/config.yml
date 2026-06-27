@@ -149,6 +149,12 @@ collections:
                 name: category
                 widget: object
                 fields: *localized_string
+              - { label: Sort Order, name: sortOrder, widget: number, value_type: int, required: false }
+              - label: Status
+                name: status
+                widget: select
+                options: ["published", "draft"]
+                default: "published"
           - label: Gallery
             name: gallery
             widget: list

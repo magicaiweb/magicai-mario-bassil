@@ -164,13 +164,16 @@ export default function Home() {
           <p className="text-sm font-black uppercase tracking-[0.2em] text-red-600">{isArabic ? "الفيديو" : "Videos"}</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-black sm:text-5xl">{isArabic ? "مقاطع وريلز وروابط اجتماعية" : "Clips, reels, and social embeds"}</h2>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {initialContent.media.map((item) => (
-              <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
-                <MediaPreview url={item.url} label={item.source} thumbnailImage={item.thumbnailImage} />
-                <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
-                <p className="mt-2 text-black/62">{t(item.category, language)}</p>
-              </a>
-            ))}
+            {initialContent.media
+              .filter((item) => (item.status ?? "published") === "published")
+              .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+              .map((item) => (
+                <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
+                  <MediaPreview url={item.url} label={item.source} thumbnailImage={item.thumbnailImage} />
+                  <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
+                  <p className="mt-2 text-black/62">{t(item.category, language)}</p>
+                </a>
+              ))}
           </div>
         </div>
       </section>

@@ -39,6 +39,8 @@ export type MediaItem = {
   url: string;
   thumbnailImage?: string;
   category: LocalizedText;
+  sortOrder?: number;
+  status?: "published" | "draft";
 };
 
 export type PressItem = {
