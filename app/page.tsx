@@ -114,7 +114,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/15 bg-black/50 p-4 shadow-2xl">
+            <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/15 bg-black/50 shadow-2xl">
               <Image
                 src={initialContent.hero.image}
                 alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
@@ -123,14 +123,6 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.14),rgba(0,0,0,0.02)_42%,rgba(0,0,0,0.44)),linear-gradient(180deg,transparent_48%,rgba(0,0,0,0.8))]" />
-              <div className="absolute bottom-8 left-8 right-8 rounded-md border border-white/20 bg-black/50 p-5 backdrop-blur">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-amber-300">Official portrait</p>
-                <h2 className="mt-3 text-3xl font-black">{isArabic ? "ماريو باسيل" : "Mario Bassil"}</h2>
-                <p className="mt-3 text-sm leading-6 text-white/74">
-                  {isArabic ? "صورة مؤقتة من الصفحة الرسمية على فيسبوك." : "Placeholder portrait from Mario's official Facebook profile."}
-                </p>
-              </div>
             </div>
           </div>
         </div>
