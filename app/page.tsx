@@ -16,6 +16,8 @@ export default function Home() {
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
+  const showreel = initialContent.media.find((item) => item.source === "Google Drive") ?? initialContent.media[0];
+  const showreelPreviewUrl = getGoogleDrivePreviewUrl(showreel.url);
 
   const dateFormatter = useMemo(
     () =>
@@ -127,6 +129,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="overflow-hidden rounded-lg border border-white/12 bg-black shadow-2xl">
+            {showreelPreviewUrl ? (
+              <iframe
+                title={t(showreel.title, language)}
+                src={showreelPreviewUrl}
+                className="aspect-video w-full bg-black"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
+            ) : (
+              <MediaPreview url={showreel.url} label={showreel.source} thumbnailImage={showreel.thumbnailImage} />
+            )}
+          </div>
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">{isArabic ? "الشوريل" : "Showreel"}</p>
+            <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">{t(showreel.title, language)}</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-white/68">{t(showreel.category, language)}</p>
+            <a href={showreel.url} className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white">
+              {isArabic ? "مشاهدة الشوريل" : "Watch showreel"}
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="shows" className="bg-[#111111]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
@@ -168,19 +196,13 @@ export default function Home() {
           <h2 className="mt-4 max-w-3xl text-4xl font-black sm:text-5xl">{isArabic ? "مقاطع وريلز وروابط اجتماعية" : "Clips, reels, and social embeds"}</h2>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {initialContent.media
-              .filter((item) => (item.status ?? "published") === "published")
+              .filter((item) => (item.status ?? "published") === "published" && item.source !== "Google Drive")
               .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
-              .map((item, index) => (
-                <a
-                  key={item.url}
-                  href={item.url}
-                  className={`group rounded-lg border p-5 transition hover:-translate-y-1 hover:border-black ${index === 0 ? "border-red-200 bg-black text-white lg:col-span-3 lg:grid lg:grid-cols-[minmax(240px,336px)_1fr] lg:items-center lg:gap-8" : "border-black/10 bg-[#f7f2e8]"}`}
-                >
+              .map((item) => (
+                <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
                   <MediaPreview url={item.url} label={item.source} thumbnailImage={item.thumbnailImage} />
-                  <div>
-                    <h3 className="mt-5 text-2xl font-black lg:mt-0">{t(item.title, language)}</h3>
-                    <p className={`mt-2 ${index === 0 ? "text-white/68" : "text-black/62"}`}>{t(item.category, language)}</p>
-                  </div>
+                  <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
+                  <p className="mt-2 text-black/62">{t(item.category, language)}</p>
                 </a>
               ))}
           </div>
@@ -360,6 +382,11 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 function getYouTubeId(url: string) {
   const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? "";
+}
+
+function getGoogleDrivePreviewUrl(url: string) {
+  const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
 }
 
 function InstagramIcon() {
