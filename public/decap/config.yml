@@ -224,6 +224,90 @@ collections:
                 name: summary
                 widget: object
                 fields: *localized_text
+              - { label: Poster Image URL, name: posterImage, widget: string, required: false }
+              - label: Poster Alt
+                name: posterAlt
+                widget: object
+                required: false
+                fields: *localized_string
+              - label: Feature Label
+                name: featureLabel
+                widget: object
+                required: false
+                fields: *localized_string
+              - label: Feature Title
+                name: featureTitle
+                widget: object
+                required: false
+                fields: *localized_string
+              - label: Feature Body
+                name: featureBody
+                widget: object
+                required: false
+                fields: *localized_text
+              - label: Crew
+                name: crew
+                widget: list
+                required: false
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - label: Role
+                    name: role
+                    widget: object
+                    fields: *localized_string
+                  - label: Bio
+                    name: bio
+                    widget: object
+                    fields: *localized_text
+                  - { label: Image URL, name: image, widget: string, required: false }
+                  - { label: Image Position, name: imagePosition, widget: string, required: false }
+              - label: Showings / Dates
+                name: showings
+                widget: list
+                required: false
+                fields:
+                  - { label: Date, name: date, widget: string }
+                  - { label: Time, name: time, widget: string }
+                  - label: Venue
+                    name: venue
+                    widget: object
+                    fields: *localized_string
+                  - label: City
+                    name: city
+                    widget: object
+                    fields: *localized_string
+                  - label: Status
+                    name: status
+                    widget: object
+                    fields: *localized_string
+                  - { label: Ticket URL, name: ticketUrl, widget: string, required: false }
+                  - label: Ticket Label
+                    name: ticketLabel
+                    widget: object
+                    required: false
+                    fields: *localized_string
+              - label: Contact Section
+                name: contact
+                widget: object
+                required: false
+                fields:
+                  - label: Eyebrow
+                    name: eyebrow
+                    widget: object
+                    fields: *localized_string
+                  - label: Title
+                    name: title
+                    widget: object
+                    fields: *localized_string
+                  - label: Body
+                    name: body
+                    widget: object
+                    fields: *localized_text
+                  - { label: Email, name: email, widget: string }
+                  - label: CTA Label
+                    name: ctaLabel
+                    widget: object
+                    fields: *localized_string
               - label: Sections
                 name: sections
                 widget: list
