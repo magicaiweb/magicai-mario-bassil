@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { initialContent, t, type Language } from "../content";
+import { ShowreelPlayer } from "../ShowreelPlayer";
 
 type Params = Promise<{ slug: string }>;
 
@@ -26,6 +27,7 @@ export default async function CmsPage({ params }: { params: Params }) {
   const { slug } = await params;
   const page = initialContent.pages.find((item) => item.slug === slug);
   const language: Language = "en";
+  const showreel = initialContent.media.find((item) => item.source === "Hosted Video" || item.source === "Google Drive") ?? initialContent.media[0];
 
   if (!page) {
     notFound();
@@ -50,6 +52,20 @@ export default async function CmsPage({ params }: { params: Params }) {
           <p className="mt-5 max-w-3xl text-xl leading-8 text-white/68">
             {t(page.summary, language)}
           </p>
+        </section>
+        <section id="showreel" className="mt-8 border-b border-white/10 pb-10">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <ShowreelPlayer language={language} showreel={showreel} />
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">Showreel</p>
+              <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+                {t(showreel.title, language)}
+              </h2>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-white/68">
+                {t(showreel.category, language)}
+              </p>
+            </div>
+          </div>
         </section>
         <section className="mt-8 grid gap-4">
           {page.sections.map((section) => (

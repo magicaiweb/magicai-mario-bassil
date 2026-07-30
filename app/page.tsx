@@ -1,9 +1,10 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { initialContent, Language, t } from "./content";
+import { ShowreelPlayer } from "./ShowreelPlayer";
 
 const languageLabels: Record<Language, string> = {
   en: "EN",
@@ -13,22 +14,10 @@ const languageLabels: Record<Language, string> = {
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [formError, setFormError] = useState("");
-  const [showreelExpanded, setShowreelExpanded] = useState(false);
-  const modalVideoRef = useRef<HTMLVideoElement>(null);
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
   const showreel = initialContent.media.find((item) => item.source === "Hosted Video" || item.source === "Google Drive") ?? initialContent.media[0];
-  const showreelPoster = showreel.thumbnailImage || initialContent.hero.image;
-
-  useEffect(() => {
-    if (!showreelExpanded) return;
-
-    const video = modalVideoRef.current;
-    video?.play().catch(() => {
-      // Some mobile browsers require a second user tap even after opening the modal.
-    });
-  }, [showreelExpanded]);
 
   const dateFormatter = useMemo(
     () =>
@@ -151,36 +140,14 @@ export default function Home() {
 
       <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="relative overflow-hidden rounded-lg border border-white/12 bg-[#070707] shadow-2xl">
-            <button
-              type="button"
-              onClick={() => setShowreelExpanded(true)}
-              className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-[#070707] text-white"
-              aria-label={isArabic ? "تشغيل شوريل التمثيل بملء الشاشة" : "Play acting showreel fullscreen"}
-            >
-              <span
-                className="absolute inset-0 scale-110 bg-cover bg-center opacity-38 blur-md transition duration-500 group-hover:scale-[1.14]"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.72)), url(${showreelPoster})`,
-                }}
-              />
-              <span
-                className="absolute inset-0 bg-contain bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.02]"
-                style={{ backgroundImage: `url(${showreelPoster})` }}
-              />
-              <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,214,94,0.2),transparent_46%)]" />
-              <span className="relative grid h-20 w-20 place-items-center rounded-full bg-amber-300 text-black shadow-2xl shadow-black/45 transition duration-300 group-hover:scale-105 group-hover:bg-white">
-                <PlayIcon />
-              </span>
-            </button>
-          </div>
+          <ShowreelPlayer language={language} showreel={showreel} />
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">{isArabic ? "الشوريل" : "Showreel"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">{t(showreel.title, language)}</h2>
             <p className="mt-5 max-w-xl text-lg leading-8 text-white/68">{t(showreel.category, language)}</p>
             <button
               type="button"
-              onClick={() => setShowreelExpanded(true)}
+              onClick={() => document.querySelector<HTMLButtonElement>("#showreel-player-button")?.click()}
               className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white"
             >
               {isArabic ? "مشاهدة الشوريل" : "Watch showreel"}
@@ -188,31 +155,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {showreelExpanded ? (
-        <div className="fixed inset-0 z-50 bg-black text-white" role="dialog" aria-modal="true" aria-label={t(showreel.title, language)}>
-          <button
-            type="button"
-            onClick={() => setShowreelExpanded(false)}
-            className="absolute right-4 top-4 z-10 rounded-md border border-white/20 bg-black/70 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur transition hover:bg-white hover:text-black"
-          >
-            {isArabic ? "إغلاق" : "Close"}
-          </button>
-          <video
-            ref={modalVideoRef}
-            className="h-full w-full bg-black object-contain"
-            controls
-            autoPlay
-            playsInline
-            preload="auto"
-            poster={showreelPoster}
-            aria-label={t(showreel.title, language)}
-          >
-            <source src={showreel.url} type="video/mp4" />
-            <a href={showreel.url}>{isArabic ? "فتح الشوريل" : "Open showreel"}</a>
-          </video>
-        </div>
-      ) : null}
 
       <section id="shows" className="bg-[#111111]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
@@ -441,14 +383,6 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 function getYouTubeId(url: string) {
   const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? "";
-}
-
-function PlayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="ml-1 h-10 w-10 fill-current">
-      <path d="M8 5.2v13.6L18.8 12 8 5.2Z" />
-    </svg>
-  );
 }
 
 function InstagramIcon() {
