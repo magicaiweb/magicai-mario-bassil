@@ -21,6 +21,9 @@ function withContentDefaults(content: SiteContent): SiteContent {
   };
 }
 
+type PageCrewMember = NonNullable<PageItem["crew"]>[number];
+type PageShowing = NonNullable<PageItem["showings"]>[number];
+
 const blankSection: EditableSection = {
   id: "new-page-section",
   type: "text",
@@ -173,7 +176,7 @@ export default function AdminPage() {
     saveDraft(next);
   }
 
-  function updatePage(index: number, patch: Partial<PageItem>) {
+function updatePage(index: number, patch: Partial<PageItem>) {
     const pages = content.pages.map((page, itemIndex) => (itemIndex === index ? { ...page, ...patch } : page));
     const next = { ...content, pages };
     setContent(next);
@@ -184,6 +187,14 @@ export default function AdminPage() {
     const page = content.pages[index];
     updatePage(index, {
       [field]: { ...page[field], [activeLanguage]: value },
+    });
+  }
+
+  function updatePageFeatureText(index: number, field: "posterAlt" | "featureLabel" | "featureTitle" | "featureBody", value: string) {
+    const page = content.pages[index];
+    const fallback = page[field] ?? { en: "", ar: "" };
+    updatePage(index, {
+      [field]: { ...fallback, [activeLanguage]: value },
     });
   }
 
@@ -208,6 +219,81 @@ export default function AdminPage() {
         },
       ],
     });
+  }
+
+  function updatePageCrew(index: number, memberIndex: number, patch: Partial<PageCrewMember>) {
+    const page = content.pages[index];
+    const crew = (page.crew ?? []).map((member, itemIndex) => (itemIndex === memberIndex ? { ...member, ...patch } : member));
+    updatePage(index, { crew });
+  }
+
+  function addPageCrew(index: number) {
+    const page = content.pages[index];
+    updatePage(index, {
+      crew: [
+        ...(page.crew ?? []),
+        {
+          name: "New crew member",
+          role: { en: "Comedy performer", ar: "ممثل كوميدي" },
+          bio: { en: "Write crew bio.", ar: "اكتب نبذة عن عضو الفريق." },
+          image: "",
+          imagePosition: "center top",
+        },
+      ],
+    });
+  }
+
+  function updatePageShowing(index: number, showingIndex: number, patch: Partial<PageShowing>) {
+    const page = content.pages[index];
+    const showings = (page.showings ?? []).map((showing, itemIndex) => (itemIndex === showingIndex ? { ...showing, ...patch } : showing));
+    updatePage(index, { showings });
+  }
+
+  function addPageShowing(index: number) {
+    const page = content.pages[index];
+    updatePage(index, {
+      showings: [
+        ...(page.showings ?? []),
+        {
+          date: "2026-01-01",
+          time: "Evening show",
+          venue: { en: "Venue name", ar: "اسم المكان" },
+          city: { en: "City, Country", ar: "المدينة، البلد" },
+          status: { en: "Coming soon", ar: "قريباً" },
+          ticketUrl: "",
+          ticketLabel: { en: "Tickets", ar: "التذاكر" },
+        },
+      ],
+    });
+  }
+
+  function updatePageContactText(index: number, field: "eyebrow" | "title" | "body" | "ctaLabel", value: string) {
+    const page = content.pages[index];
+    const contact = page.contact ?? {
+      eyebrow: { en: "", ar: "" },
+      title: { en: "", ar: "" },
+      body: { en: "", ar: "" },
+      email: content.contacts.email,
+      ctaLabel: { en: content.contacts.email, ar: content.contacts.email },
+    };
+    updatePage(index, {
+      contact: {
+        ...contact,
+        [field]: { ...contact[field], [activeLanguage]: value },
+      },
+    });
+  }
+
+  function updatePageContactEmail(index: number, email: string) {
+    const page = content.pages[index];
+    const contact = page.contact ?? {
+      eyebrow: { en: "Contact us", ar: "تواصلوا معنا" },
+      title: { en: "Book the Comedy Night crew", ar: "احجزوا فريق كوميدي نايت" },
+      body: { en: "", ar: "" },
+      email,
+      ctaLabel: { en: email, ar: email },
+    };
+    updatePage(index, { contact: { ...contact, email } });
   }
 
   function addPage() {
@@ -410,6 +496,66 @@ export default function AdminPage() {
                   <Field label="Slug" value={page.slug} onChange={(value) => updatePage(index, { slug: value })} />
                   <Field label="Title" value={page.title[activeLanguage]} onChange={(value) => updatePageText(index, "title", value)} />
                   <Field label="Summary" value={page.summary[activeLanguage]} onChange={(value) => updatePageText(index, "summary", value)} />
+                </div>
+                <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
+                  <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Page feature / poster</h3>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <Field label="Poster image URL" value={page.posterImage ?? ""} onChange={(value) => updatePage(index, { posterImage: value })} />
+                    <Field label="Poster alt text" value={page.posterAlt?.[activeLanguage] ?? ""} onChange={(value) => updatePageFeatureText(index, "posterAlt", value)} />
+                    <Field label="Feature label" value={page.featureLabel?.[activeLanguage] ?? ""} onChange={(value) => updatePageFeatureText(index, "featureLabel", value)} />
+                    <Field label="Feature title" value={page.featureTitle?.[activeLanguage] ?? ""} onChange={(value) => updatePageFeatureText(index, "featureTitle", value)} />
+                  </div>
+                  <Area label="Feature body" value={page.featureBody?.[activeLanguage] ?? ""} onChange={(value) => updatePageFeatureText(index, "featureBody", value)} />
+                </div>
+                <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Crew</h3>
+                    <button type="button" onClick={() => addPageCrew(index)} className="rounded-md bg-black px-3 py-2 text-xs font-black text-white">
+                      Add crew member
+                    </button>
+                  </div>
+                  <div className="grid gap-3">
+                    {(page.crew ?? []).map((member, memberIndex) => (
+                      <div key={`${page.slug}-crew-${memberIndex}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-3 lg:grid-cols-5">
+                        <Field label="Name" value={member.name} onChange={(value) => updatePageCrew(index, memberIndex, { name: value })} />
+                        <Field label="Role" value={member.role[activeLanguage]} onChange={(value) => updatePageCrew(index, memberIndex, { role: { ...member.role, [activeLanguage]: value } })} />
+                        <Field label="Image URL" value={member.image ?? ""} onChange={(value) => updatePageCrew(index, memberIndex, { image: value })} />
+                        <Field label="Image position" value={member.imagePosition ?? ""} onChange={(value) => updatePageCrew(index, memberIndex, { imagePosition: value })} />
+                        <Area label="Bio" value={member.bio[activeLanguage]} onChange={(value) => updatePageCrew(index, memberIndex, { bio: { ...member.bio, [activeLanguage]: value } })} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Showings / dates</h3>
+                    <button type="button" onClick={() => addPageShowing(index)} className="rounded-md bg-black px-3 py-2 text-xs font-black text-white">
+                      Add showing
+                    </button>
+                  </div>
+                  <div className="grid gap-3">
+                    {(page.showings ?? []).map((showing, showingIndex) => (
+                      <div key={`${page.slug}-showing-${showingIndex}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-3 lg:grid-cols-4">
+                        <Field label="Date" value={showing.date} onChange={(value) => updatePageShowing(index, showingIndex, { date: value })} />
+                        <Field label="Time" value={showing.time} onChange={(value) => updatePageShowing(index, showingIndex, { time: value })} />
+                        <Field label="Venue" value={showing.venue[activeLanguage]} onChange={(value) => updatePageShowing(index, showingIndex, { venue: { ...showing.venue, [activeLanguage]: value } })} />
+                        <Field label="City" value={showing.city[activeLanguage]} onChange={(value) => updatePageShowing(index, showingIndex, { city: { ...showing.city, [activeLanguage]: value } })} />
+                        <Field label="Status" value={showing.status[activeLanguage]} onChange={(value) => updatePageShowing(index, showingIndex, { status: { ...showing.status, [activeLanguage]: value } })} />
+                        <Field label="Ticket URL" value={showing.ticketUrl ?? ""} onChange={(value) => updatePageShowing(index, showingIndex, { ticketUrl: value })} />
+                        <Field label="Ticket label" value={showing.ticketLabel?.[activeLanguage] ?? ""} onChange={(value) => updatePageShowing(index, showingIndex, { ticketLabel: { ...(showing.ticketLabel ?? { en: "", ar: "" }), [activeLanguage]: value } })} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
+                  <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Contact section</h3>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <Field label="Eyebrow" value={page.contact?.eyebrow[activeLanguage] ?? ""} onChange={(value) => updatePageContactText(index, "eyebrow", value)} />
+                    <Field label="Title" value={page.contact?.title[activeLanguage] ?? ""} onChange={(value) => updatePageContactText(index, "title", value)} />
+                    <Field label="Email" value={page.contact?.email ?? ""} onChange={(value) => updatePageContactEmail(index, value)} />
+                    <Field label="CTA label" value={page.contact?.ctaLabel[activeLanguage] ?? ""} onChange={(value) => updatePageContactText(index, "ctaLabel", value)} />
+                  </div>
+                  <Area label="Body" value={page.contact?.body[activeLanguage] ?? ""} onChange={(value) => updatePageContactText(index, "body", value)} />
                 </div>
                 <div className="mt-4 flex justify-end">
                   <button type="button" onClick={() => addPageSection(index)} className="rounded-md border border-black/15 bg-white px-3 py-2 text-xs font-black">

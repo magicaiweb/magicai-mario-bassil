@@ -437,6 +437,169 @@
         "en": "The Comedy Night archive brings together Mario Bassil's stage legacy, television sketches, live tours, posters, and media highlights.",
         "ar": "أرشيف كوميدي نايت يجمع إرث ماريو باسيل المسرحي، الاسكتشات التلفزيونية، الجولات المباشرة، البوسترات، وأبرز المحطات الإعلامية."
       },
+      "posterImage": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
+      "posterAlt": {
+        "en": "Comedy Night poster with Mario Bassil, Chady Maroun, and Aline Ahmar",
+        "ar": "بوستر كوميدي نايت مع ماريو باسيل وشادي مارون وألين أحمر"
+      },
+      "featureLabel": {
+        "en": "Comedy Night crew",
+        "ar": "فريق كوميدي نايت"
+      },
+      "featureTitle": {
+        "en": "Mario Bassil, Chady Maroun, and Aline Ahmar",
+        "ar": "ماريو باسيل، شادي مارون، وألين أحمر"
+      },
+      "featureBody": {
+        "en": "A live Lebanese comedy lineup built for theatre nights, diaspora events, festivals, and private bookings.",
+        "ar": "فريق كوميدي لبناني مباشر للعروض المسرحية، فعاليات الاغتراب، المهرجانات، والحفلات الخاصة."
+      },
+      "crew": [
+        {
+          "name": "Mario Bassil",
+          "role": {
+            "en": "Headliner / creator",
+            "ar": "النجم الرئيسي / المؤسس"
+          },
+          "bio": {
+            "en": "The face of Comedy Night, bringing stage characters, television energy, and Lebanese satire to live audiences.",
+            "ar": "وجه كوميدي نايت، يجمع شخصيات المسرح وطاقة التلفزيون والسخرية اللبنانية أمام الجمهور المباشر."
+          },
+          "image": "/websites/mario-bassil/images/mario/red-background-point.jpg",
+          "imagePosition": "center top"
+        },
+        {
+          "name": "Chady Maroun",
+          "role": {
+            "en": "Comedy performer",
+            "ar": "ممثل كوميدي"
+          },
+          "bio": {
+            "en": "A core Comedy Night performer known for fast character work, sketch timing, and crowd-driven stage presence.",
+            "ar": "من وجوه كوميدي نايت الأساسية، معروف بسرعة الشخصيات وتوقيت الاسكتشات والحضور المتفاعل مع الجمهور."
+          },
+          "image": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
+          "imagePosition": "52% top"
+        },
+        {
+          "name": "Aline Ahmar",
+          "role": {
+            "en": "Comedy performer",
+            "ar": "ممثلة كوميدية"
+          },
+          "bio": {
+            "en": "Aline brings a sharp live presence to the Comedy Night cast, adding character work and audience chemistry to the show.",
+            "ar": "تضيف ألين حضوراً مباشراً حاداً إلى فريق كوميدي نايت، مع شخصيات وتفاعل واضح مع الجمهور."
+          },
+          "image": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
+          "imagePosition": "83% top"
+        }
+      ],
+      "showings": [
+        {
+          "date": "October 25, 2025",
+          "time": "10:00 PM",
+          "venue": {
+            "en": "Beirut Hall, Sin El Fil",
+            "ar": "بيروت هول، سن الفيل"
+          },
+          "city": {
+            "en": "Lebanon",
+            "ar": "لبنان"
+          },
+          "status": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          },
+          "ticketUrl": "",
+          "ticketLabel": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          }
+        },
+        {
+          "date": "January 16, 2026",
+          "time": "Evening show",
+          "venue": {
+            "en": "Decorum Midtown",
+            "ar": "ديكوروم ميدتاون"
+          },
+          "city": {
+            "en": "Houston, TX",
+            "ar": "هيوستن، تكساس"
+          },
+          "status": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          },
+          "ticketUrl": "",
+          "ticketLabel": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          }
+        },
+        {
+          "date": "February 1, 2026",
+          "time": "8:00 PM",
+          "venue": {
+            "en": "Zikrayet Lebanese Restaurant and Lounge",
+            "ar": "ذكريات لبنانيز ريستورانت أند لاونج"
+          },
+          "city": {
+            "en": "Alexandria, VA",
+            "ar": "ألكسندريا، فيرجينيا"
+          },
+          "status": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          },
+          "ticketUrl": "",
+          "ticketLabel": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          }
+        },
+        {
+          "date": "February 8, 2026",
+          "time": "Evening show",
+          "venue": {
+            "en": "Layali Miami",
+            "ar": "ليالي ميامي"
+          },
+          "city": {
+            "en": "Miami, FL",
+            "ar": "ميامي، فلوريدا"
+          },
+          "status": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          },
+          "ticketUrl": "",
+          "ticketLabel": {
+            "en": "Archive",
+            "ar": "أرشيف"
+          }
+        }
+      ],
+      "contact": {
+        "eyebrow": {
+          "en": "Contact us",
+          "ar": "تواصلوا معنا"
+        },
+        "title": {
+          "en": "Book the Comedy Night crew",
+          "ar": "احجزوا فريق كوميدي نايت"
+        },
+        "body": {
+          "en": "For theatre shows, festivals, diaspora events, and private comedy nights with Mario, Chady, and Aline.",
+          "ar": "للعروض المسرحية، المهرجانات، فعاليات الاغتراب، والليالي الكوميدية الخاصة مع ماريو وشادي وألين."
+        },
+        "email": "contact@mariobassil.com",
+        "ctaLabel": {
+          "en": "contact@mariobassil.com",
+          "ar": "contact@mariobassil.com"
+        }
+      },
       "sections": [
         {
           "heading": {
