@@ -125,8 +125,7 @@ export default function Home() {
             <div className="grid gap-3 sm:grid-cols-3">
               {(aboutSection.cards ?? []).map((item) => (
                 <div key={item.title.en} className="rounded-md border border-black/10 bg-white p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">{isArabic ? "قابل للتعديل" : "Editable"}</p>
-                  <p className="mt-2 text-lg font-black text-black">{t(item.title, language)}</p>
+                  <p className="text-lg font-black text-black">{t(item.title, language)}</p>
                   <p className="mt-2 text-sm leading-6 text-black/55">{t(item.body, language)}</p>
                 </div>
               ))}
