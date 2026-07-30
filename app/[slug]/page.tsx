@@ -122,7 +122,7 @@ export default async function CmsPage({ params }: { params: Params }) {
             <section className="mt-8 overflow-hidden rounded-xl border border-white/10 bg-[#180f0f]">
               <div className="relative aspect-[1175/550] min-h-[220px]">
                 <Image
-                  src="/images/mario/comedy-night-crew-poster.png"
+                  src="/websites/mario-bassil/images/mario/comedy-night-crew-poster.png"
                   alt="Comedy Night poster with Mario Bassil, Chady Maroun, and Aline Ahmar"
                   fill
                   sizes="(min-width: 1024px) 896px, 100vw"
