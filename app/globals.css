@@ -33,3 +33,41 @@ select {
   background: #fcd34d;
   color: #111111;
 }
+
+.hero-dance {
+  animation: hero-dance 2.8s ease-in-out infinite;
+  transform-origin: 50% 92%;
+  will-change: transform;
+}
+
+@keyframes hero-dance {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1.01);
+  }
+  14% {
+    transform: translate3d(-1.2%, 0, 0) rotate(-1.4deg) skewX(-0.6deg) scale(1.025);
+  }
+  28% {
+    transform: translate3d(1%, -0.4%, 0) rotate(1.15deg) skewX(0.5deg) scale(1.02);
+  }
+  42% {
+    transform: translate3d(-0.7%, 0.15%, 0) rotate(-0.85deg) skewX(-0.35deg) scale(1.025);
+  }
+  56% {
+    transform: translate3d(1.35%, -0.35%, 0) rotate(1.35deg) skewX(0.45deg) scale(1.018);
+  }
+  70% {
+    transform: translate3d(-0.5%, 0, 0) rotate(-0.55deg) skewX(-0.25deg) scale(1.024);
+  }
+  84% {
+    transform: translate3d(0.65%, -0.2%, 0) rotate(0.7deg) skewX(0.25deg) scale(1.017);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dance {
+    animation: none;
+    transform: none;
+  }
+}
