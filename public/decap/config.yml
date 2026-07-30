@@ -79,6 +79,7 @@ collections:
                 widget: object
                 required: false
                 fields: *localized_string
+              - { label: Section Image URL, name: image, widget: string, required: false }
               - label: Cards
                 name: cards
                 widget: list
@@ -182,6 +183,7 @@ collections:
                 fields: *localized_string
               - { label: Outlet, name: outlet, widget: string }
               - { label: URL, name: url, widget: string }
+              - { label: Thumbnail Image URL, name: thumbnailImage, widget: string, required: false }
               - label: Type
                 name: type
                 widget: select

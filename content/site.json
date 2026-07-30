@@ -56,7 +56,7 @@
       "en": "A bold bilingual home for fans, promoters, press, and private event organizers across Lebanon, the Arab world, and the diaspora.",
       "ar": "منصة ثنائية اللغة للجمهور والمنظمين والإعلام والفعاليات الخاصة في لبنان والعالم العربي والاغتراب."
     },
-    "image": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
+    "image": "/websites/mario-bassil/images/mario/red-background-point.jpg",
     "primaryCta": {
       "en": "Book Mario",
       "ar": "احجز ماريو"
@@ -82,6 +82,7 @@
         "en": "Comedy Night",
         "ar": "كوميدي نايت"
       },
+      "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
       "cards": [
         {
           "title": {
@@ -161,7 +162,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
+      "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-amber-300 via-red-500 to-black",
       "status": "soon"
     },
@@ -191,7 +192,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "/websites/mario-bassil/images/mario/red-background-point.jpg",
+      "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-cyan-300 via-blue-700 to-black",
       "status": "soon"
     },
@@ -221,7 +222,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "/websites/mario-bassil/images/mario/stage-character.jpg",
+      "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-fuchsia-500 via-violet-600 to-black",
       "status": "soon"
     }
@@ -281,7 +282,8 @@
       },
       "outlet": "Mario Bassil Official",
       "url": "https://www.youtube.com/watch?v=afM3LCcJslk",
-      "type": "YouTube"
+      "type": "YouTube",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg"
     },
     {
       "title": {
@@ -290,7 +292,8 @@
       },
       "outlet": "Mario Bassil Official",
       "url": "https://www.youtube.com/watch?v=9CLj_p8vjnk",
-      "type": "YouTube"
+      "type": "YouTube",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg"
     },
     {
       "title": {
@@ -299,7 +302,8 @@
       },
       "outlet": "Mario Bassil Official",
       "url": "https://www.youtube.com/@mariobassilofficial/videos",
-      "type": "YouTube"
+      "type": "YouTube",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg"
     }
   ],
   "gallery": [
@@ -308,7 +312,7 @@
         "en": "Comedy Night Season 1",
         "ar": "كوميدي نايت الموسم الأول"
       },
-      "image": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg",
+      "image": "/websites/mario-bassil/images/mario/red-background-point.jpg",
       "url": "https://www.youtube.com/watch?v=kijjTW_cwNw",
       "sortOrder": 1,
       "status": "published",
@@ -319,7 +323,7 @@
         "en": "Comedy Night Zero",
         "ar": "كوميدي نايت زيرو"
       },
-      "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
+      "image": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg",
       "url": "https://www.youtube.com/watch?v=ZJJSTjpqlQ4",
       "sortOrder": 2,
       "status": "published",
@@ -346,6 +350,39 @@
       "sortOrder": 4,
       "status": "published",
       "tone": "from-lime-300 to-emerald-600"
+    },
+    {
+      "label": {
+        "en": "Comedy Night TV Sketch",
+        "ar": "اسكتش تلفزيوني من كوميدي نايت"
+      },
+      "image": "/websites/mario-bassil/images/mario/diwan-stage.jpg",
+      "url": "https://www.youtube.com/results?search_query=Mario+Bassil+Comedy+Night",
+      "sortOrder": 5,
+      "status": "published",
+      "tone": "from-sky-400 to-fuchsia-500"
+    },
+    {
+      "label": {
+        "en": "Signature Character",
+        "ar": "شخصية كوميدية مميزة"
+      },
+      "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
+      "url": "https://www.youtube.com/@mariobassilofficial/videos",
+      "sortOrder": 6,
+      "status": "published",
+      "tone": "from-neutral-200 to-red-500"
+    },
+    {
+      "label": {
+        "en": "Official Promo Poster",
+        "ar": "بوستر ترويجي رسمي"
+      },
+      "image": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
+      "url": "https://www.youtube.com/@mariobassilofficial/videos",
+      "sortOrder": 7,
+      "status": "published",
+      "tone": "from-amber-300 to-red-700"
     }
   ],
   "contacts": {

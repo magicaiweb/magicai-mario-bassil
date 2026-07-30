@@ -10,6 +10,7 @@ export type EditableSection = {
   title: LocalizedText;
   body: LocalizedText;
   ctaLabel?: LocalizedText;
+  image?: string;
   cards?: {
     title: LocalizedText;
     body: LocalizedText;
@@ -48,6 +49,7 @@ export type PressItem = {
   outlet: string;
   url: string;
   type: "Interview" | "Article" | "YouTube";
+  thumbnailImage?: string;
 };
 
 export type GalleryItem = {

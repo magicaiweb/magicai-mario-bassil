@@ -99,12 +99,15 @@ export default function Home() {
       </section>
 
       <section id="about" className="bg-[#f7f2e8] text-[#161616]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-600">{isArabic ? "نبذة" : "About"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
               {t(aboutSection.title, language)}
             </h2>
+            {aboutSection.image ? (
+              <div className="mt-8 aspect-[4/5] overflow-hidden rounded-lg bg-black bg-cover bg-center shadow-xl" style={{ backgroundImage: `url(${aboutSection.image})` }} />
+            ) : null}
           </div>
           <div className="space-y-6 text-lg leading-9 text-black/72">
             <p>{t(aboutSection.body, language)}</p>
@@ -213,7 +216,7 @@ export default function Home() {
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {initialContent.press.map((item) => (
               <a key={item.title.en} href={item.url} className="rounded-lg border border-black/10 bg-white p-5 transition hover:-translate-y-1 hover:border-black">
-                <MediaPreview url={item.url} label={item.type} />
+                <MediaPreview url={item.url} label={item.type} thumbnailImage={item.thumbnailImage} />
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-black/45">{item.type} · {item.outlet}</p>
                 <h3 className="mt-4 text-2xl font-black">{t(item.title, language)}</h3>
               </a>

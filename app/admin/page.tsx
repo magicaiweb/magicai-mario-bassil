@@ -27,6 +27,7 @@ const blankSection: EditableSection = {
   title: { en: "New editable page section", ar: "قسم جديد قابل للتعديل" },
   body: { en: "Write English content here.", ar: "اكتب المحتوى العربي هنا." },
   ctaLabel: { en: "Learn more", ar: "اعرف المزيد" },
+  image: "",
   cards: [],
   status: "draft",
 };
@@ -375,6 +376,7 @@ export default function AdminPage() {
                   <Field label="Title" value={section.title[activeLanguage]} onChange={(value) => updateSectionText(index, "title", value)} />
                   <Area label="Body" value={section.body[activeLanguage]} onChange={(value) => updateSectionText(index, "body", value)} />
                   <Field label="CTA label" value={section.ctaLabel?.[activeLanguage] ?? ""} onChange={(value) => updateSection(index, { ctaLabel: { ...(section.ctaLabel ?? { en: "", ar: "" }), [activeLanguage]: value } })} />
+                  <Field label="Section image URL" value={section.image ?? ""} onChange={(value) => updateSection(index, { image: value })} />
                   <div className="mt-4 rounded-md border border-black/10 bg-white p-4">
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <h3 className="text-sm font-black uppercase tracking-[0.14em] text-black/50">Cards</h3>
@@ -471,10 +473,11 @@ export default function AdminPage() {
 
           <EditorPanel id="press" title="Press / Media Kit">
             {content.press.map((item, index) => (
-              <div key={`${item.outlet}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-4">
+              <div key={`${item.outlet}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-5">
                 <Field label="Title" value={item.title[activeLanguage]} onChange={(value) => updatePress(index, { title: { ...item.title, [activeLanguage]: value } })} />
                 <Field label="Outlet" value={item.outlet} onChange={(value) => updatePress(index, { outlet: value })} />
                 <Field label="URL" value={item.url} onChange={(value) => updatePress(index, { url: value })} />
+                <Field label="Thumbnail image URL" value={item.thumbnailImage ?? ""} onChange={(value) => updatePress(index, { thumbnailImage: value })} />
                 <Select label="Type" value={item.type} options={["Interview", "Article", "YouTube"]} onChange={(value) => updatePress(index, { type: value as PressItem["type"] })} />
               </div>
             ))}
