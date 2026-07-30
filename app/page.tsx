@@ -81,7 +81,16 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="home" className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-black">
+      <section
+        id="home"
+        className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-[#3b0d07]"
+        style={{
+          backgroundImage: `linear-gradient(90deg, rgba(59,13,7,0.9), rgba(59,13,7,0.18) 32%, rgba(59,13,7,0.18) 68%, rgba(59,13,7,0.9)), url(${initialContent.hero.image})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
         <Image
           src={initialContent.hero.image}
           alt={isArabic ? "ماريو باسيل" : "Mario Bassil"}
