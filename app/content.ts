@@ -76,6 +76,7 @@ export type PageItem = {
     bio: LocalizedText;
     image?: string;
     imagePosition?: string;
+    imageNote?: LocalizedText;
   }[];
   showings?: {
     date: string;

@@ -261,6 +261,11 @@ collections:
                     fields: *localized_text
                   - { label: Image URL, name: image, widget: string, required: false }
                   - { label: Image Position, name: imagePosition, widget: string, required: false }
+                  - label: Image Note
+                    name: imageNote
+                    widget: object
+                    required: false
+                    fields: *localized_string
               - label: Showings / Dates
                 name: showings
                 widget: list

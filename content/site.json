@@ -437,10 +437,10 @@
         "en": "The Comedy Night archive brings together Mario Bassil's stage legacy, television sketches, live tours, posters, and media highlights.",
         "ar": "أرشيف كوميدي نايت يجمع إرث ماريو باسيل المسرحي، الاسكتشات التلفزيونية، الجولات المباشرة، البوسترات، وأبرز المحطات الإعلامية."
       },
-      "posterImage": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
+      "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterAlt": {
-        "en": "Comedy Night poster with Mario Bassil, Chady Maroun, and Aline Ahmar",
-        "ar": "بوستر كوميدي نايت مع ماريو باسيل وشادي مارون وألين أحمر"
+        "en": "Temporary Comedy Night visual using Mario Bassil stage photography",
+        "ar": "صورة مؤقتة لكوميدي نايت من صور ماريو باسيل المسرحية"
       },
       "featureLabel": {
         "en": "Comedy Night crew",
@@ -451,8 +451,8 @@
         "ar": "ماريو باسيل، شادي مارون، وألين أحمر"
       },
       "featureBody": {
-        "en": "A live Lebanese comedy lineup built for theatre nights, diaspora events, festivals, and private bookings.",
-        "ar": "فريق كوميدي لبناني مباشر للعروض المسرحية، فعاليات الاغتراب، المهرجانات، والحفلات الخاصة."
+        "en": "A live Lebanese comedy lineup built for theatre nights, diaspora events, festivals, and private bookings. The official Comedy Night crew poster is pending from Michel; this preview uses Mario's available official stage photography.",
+        "ar": "فريق كوميدي لبناني مباشر للعروض المسرحية، فعاليات الاغتراب، المهرجانات، والحفلات الخاصة. بوستر فريق كوميدي نايت الرسمي بانتظار إرساله من ميشيل، وتستخدم هذه النسخة صورة مؤقتة من صور ماريو الرسمية."
       },
       "crew": [
         {
@@ -475,11 +475,15 @@
             "ar": "ممثل كوميدي"
           },
           "bio": {
-            "en": "A core Comedy Night performer known for fast character work, sketch timing, and crowd-driven stage presence.",
-            "ar": "من وجوه كوميدي نايت الأساسية، معروف بسرعة الشخصيات وتوقيت الاسكتشات والحضور المتفاعل مع الجمهور."
+            "en": "A core Comedy Night performer known for fast character work, sketch timing, and crowd-driven stage presence. Temporary Mario image shown until Chady's official photo is provided.",
+            "ar": "من وجوه كوميدي نايت الأساسية، معروف بسرعة الشخصيات وتوقيت الاسكتشات والحضور المتفاعل مع الجمهور. تظهر حالياً صورة مؤقتة لماريو إلى حين وصول صورة شادي الرسمية."
           },
-          "image": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
-          "imagePosition": "52% top"
+          "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
+          "imagePosition": "center top",
+          "imageNote": {
+            "en": "Photo pending",
+            "ar": "الصورة بانتظار الاستبدال"
+          }
         },
         {
           "name": "Aline Ahmar",
@@ -488,11 +492,15 @@
             "ar": "ممثلة كوميدية"
           },
           "bio": {
-            "en": "Aline brings a sharp live presence to the Comedy Night cast, adding character work and audience chemistry to the show.",
-            "ar": "تضيف ألين حضوراً مباشراً حاداً إلى فريق كوميدي نايت، مع شخصيات وتفاعل واضح مع الجمهور."
+            "en": "Aline brings a sharp live presence to the Comedy Night cast, adding character work and audience chemistry to the show. Temporary Mario image shown until Aline's official photo is provided.",
+            "ar": "تضيف ألين حضوراً مباشراً حاداً إلى فريق كوميدي نايت، مع شخصيات وتفاعل واضح مع الجمهور. تظهر حالياً صورة مؤقتة لماريو إلى حين وصول صورة ألين الرسمية."
           },
-          "image": "/websites/mario-bassil/images/mario/comedy-night-crew-poster.png",
-          "imagePosition": "83% top"
+          "image": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg",
+          "imagePosition": "center top",
+          "imageNote": {
+            "en": "Photo pending",
+            "ar": "الصورة بانتظار الاستبدال"
+          }
         }
       ],
       "showings": [

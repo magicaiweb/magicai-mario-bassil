@@ -238,6 +238,7 @@ function updatePage(index: number, patch: Partial<PageItem>) {
           bio: { en: "Write crew bio.", ar: "اكتب نبذة عن عضو الفريق." },
           image: "",
           imagePosition: "center top",
+          imageNote: { en: "", ar: "" },
         },
       ],
     });
@@ -516,11 +517,12 @@ function updatePage(index: number, patch: Partial<PageItem>) {
                   </div>
                   <div className="grid gap-3">
                     {(page.crew ?? []).map((member, memberIndex) => (
-                      <div key={`${page.slug}-crew-${memberIndex}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-3 lg:grid-cols-5">
+                      <div key={`${page.slug}-crew-${memberIndex}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-3 lg:grid-cols-6">
                         <Field label="Name" value={member.name} onChange={(value) => updatePageCrew(index, memberIndex, { name: value })} />
                         <Field label="Role" value={member.role[activeLanguage]} onChange={(value) => updatePageCrew(index, memberIndex, { role: { ...member.role, [activeLanguage]: value } })} />
                         <Field label="Image URL" value={member.image ?? ""} onChange={(value) => updatePageCrew(index, memberIndex, { image: value })} />
                         <Field label="Image position" value={member.imagePosition ?? ""} onChange={(value) => updatePageCrew(index, memberIndex, { imagePosition: value })} />
+                        <Field label="Image note" value={member.imageNote?.[activeLanguage] ?? ""} onChange={(value) => updatePageCrew(index, memberIndex, { imageNote: { ...(member.imageNote ?? { en: "", ar: "" }), [activeLanguage]: value } })} />
                         <Area label="Bio" value={member.bio[activeLanguage]} onChange={(value) => updatePageCrew(index, memberIndex, { bio: { ...member.bio, [activeLanguage]: value } })} />
                       </div>
                     ))}
