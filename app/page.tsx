@@ -13,12 +13,10 @@ const languageLabels: Record<Language, string> = {
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [formError, setFormError] = useState("");
-  const [showreelPlaying, setShowreelPlaying] = useState(false);
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
   const showreel = initialContent.media.find((item) => item.source === "Google Drive") ?? initialContent.media[0];
-  const showreelPreviewUrl = getGoogleDrivePreviewUrl(showreel.url);
 
   const dateFormatter = useMemo(
     () =>
@@ -111,7 +109,7 @@ export default function Home() {
       </section>
 
       <section id="about" className="bg-[#f7f2e8] text-[#161616]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-600">{isArabic ? "نبذة" : "About"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
@@ -140,35 +138,32 @@ export default function Home() {
       </section>
 
       <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="relative overflow-hidden rounded-lg border border-white/12 bg-black shadow-2xl">
-            {showreelPlaying && showreelPreviewUrl ? (
-              <iframe
-                title={t(showreel.title, language)}
-                src={showreelPreviewUrl}
-                className="aspect-video w-full bg-black"
-                allow="autoplay; fullscreen"
-                allowFullScreen
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="relative overflow-hidden rounded-lg border border-white/12 bg-[#070707] shadow-2xl">
+            <a
+              href={showreel.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative flex aspect-[4/5] min-h-[420px] w-full items-center justify-center overflow-hidden bg-[#070707] text-white sm:aspect-[16/10]"
+              aria-label={isArabic ? "فتح شوريل التمثيل لماريو باسيل" : "Open Mario Bassil acting showreel"}
+            >
+              <span
+                className="absolute inset-0 scale-110 bg-cover bg-center opacity-45 blur-md transition duration-500 group-hover:scale-[1.14]"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.72)), url(${showreel.thumbnailImage || initialContent.hero.image})`,
+                }}
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setShowreelPlaying(true)}
-                className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-black text-white"
-                aria-label={isArabic ? "تشغيل شوريل التمثيل لماريو باسيل" : "Play Mario Bassil acting showreel"}
-              >
-                <span
-                  className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.16) 48%, rgba(0,0,0,0.64)), url(${showreel.thumbnailImage || initialContent.hero.image})`,
-                  }}
-                />
-                <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,214,94,0.18),transparent_42%)]" />
-                <span className="relative grid h-20 w-20 place-items-center rounded-full border border-white/35 bg-white/12 text-amber-300 shadow-2xl backdrop-blur transition group-hover:scale-105 group-hover:bg-amber-300 group-hover:text-black">
-                  <PlayIcon />
-                </span>
-              </button>
-            )}
+              <span
+                className="absolute inset-4 rounded-md bg-contain bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.02]"
+                style={{
+                  backgroundImage: `url(${showreel.thumbnailImage || initialContent.hero.image})`,
+                }}
+              />
+              <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,214,94,0.16),transparent_48%)]" />
+              <span className="relative grid h-20 w-20 place-items-center rounded-full border border-white/40 bg-black/42 text-amber-300 shadow-2xl backdrop-blur transition group-hover:scale-105 group-hover:bg-amber-300 group-hover:text-black">
+                <PlayIcon />
+              </span>
+            </a>
           </div>
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">{isArabic ? "الشوريل" : "Showreel"}</p>
@@ -408,11 +403,6 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 function getYouTubeId(url: string) {
   const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? "";
-}
-
-function getGoogleDrivePreviewUrl(url: string) {
-  const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
 }
 
 function PlayIcon() {
