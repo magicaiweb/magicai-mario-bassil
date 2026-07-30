@@ -153,28 +153,28 @@
         "ar": "بيروت، لبنان"
       },
       "venue": {
-        "en": "Venue TBA",
-        "ar": "المكان يعلن لاحقاً"
+        "en": "Venue to be announced",
+        "ar": "سيعلن عن مكان العرض"
       },
       "label": {
         "en": "Summer comedy night",
         "ar": "ليلة كوميدية صيفية"
       },
       "description": {
-        "en": "A first-draft event detail page for Mario Bassil's upcoming live comedy calendar. Replace this text from the CMS with final show notes, ticketing terms, age guidance, and promoter details.",
-        "ar": "صفحة تفاصيل أولية ضمن تقويم عروض ماريو باسيل المباشرة. يمكن استبدال هذا النص من لوحة الإدارة بتفاصيل العرض النهائية وشروط التذاكر ومعلومات المنظم."
+        "en": "A live Mario Bassil comedy night planned for Beirut, bringing stage characters, audience interaction, and the Comedy Night spirit back to the theatre.",
+        "ar": "ليلة كوميدية مباشرة لماريو باسيل في بيروت، تجمع الشخصيات المسرحية وتفاعل الجمهور وروح كوميدي نايت على المسرح."
       },
       "ticketPrice": {
-        "en": "TBA",
-        "ar": "يعلن لاحقاً"
+        "en": "To be announced",
+        "ar": "سيعلن قريباً"
       },
-      "ticketUrl": "#tickets",
+      "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-amber-300 via-red-500 to-black",
       "status": "soon"
     },
     {
-      "slug": "dubai-gulf-tour-placeholder",
+      "slug": "dubai-gulf-comedy-night",
       "date": "2026-08-30",
       "startTime": "20:00",
       "endTime": "22:00",
@@ -183,22 +183,22 @@
         "ar": "دبي، الإمارات"
       },
       "venue": {
-        "en": "Ticketing placeholder",
-        "ar": "رابط التذاكر قريباً"
+        "en": "Gulf venue to be announced",
+        "ar": "سيعلن عن مكان العرض في الخليج"
       },
       "label": {
-        "en": "Gulf tour placeholder",
-        "ar": "محطة خليجية مبدئية"
+        "en": "Gulf comedy night",
+        "ar": "ليلة كوميدية في الخليج"
       },
       "description": {
-        "en": "Draft event detail layout for a Gulf tour stop with room for a poster, venue notes, booking partner links, and a direct ticket CTA.",
-        "ar": "تصميم أولي لصفحة محطة ضمن جولة خليجية مع مساحة للبوستر وملاحظات المكان وروابط شركاء التذاكر وزر شراء مباشر."
+        "en": "A Gulf tour stop planned for Mario Bassil's live comedy audience, with venue, ticketing partner, and full event details to be announced.",
+        "ar": "محطة خليجية ضمن جولة ماريو باسيل الكوميدية المباشرة، وسيعلن قريباً عن المكان وشريك التذاكر وكامل التفاصيل."
       },
       "ticketPrice": {
-        "en": "TBA",
-        "ar": "يعلن لاحقاً"
+        "en": "To be announced",
+        "ar": "سيعلن قريباً"
       },
-      "ticketUrl": "#tickets",
+      "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-cyan-300 via-blue-700 to-black",
       "status": "soon"
@@ -213,22 +213,22 @@
         "ar": "مونتريال، كندا"
       },
       "venue": {
-        "en": "Diaspora event placeholder",
-        "ar": "فعالية اغترابية مبدئية"
+        "en": "Canadian venue to be announced",
+        "ar": "سيعلن عن مكان العرض في كندا"
       },
       "label": {
         "en": "Diaspora stage",
         "ar": "عرض للاغتراب"
       },
       "description": {
-        "en": "Draft page for a diaspora audience event. The CMS can hold the final show story, press line, poster, venue instructions, and ticket URL.",
-        "ar": "صفحة أولية لعرض موجه لجمهور الاغتراب. يمكن للـ CMS إدارة وصف العرض النهائي والبوستر وتعليمات المكان ورابط التذاكر."
+        "en": "A Comedy Night stage date for the Lebanese diaspora audience in Canada, built around live sketches, character comedy, and Mario's theatre energy.",
+        "ar": "موعد مسرحي لكوميدي نايت لجمهور الاغتراب اللبناني في كندا، مع اسكتشات مباشرة وشخصيات كوميدية وطاقة ماريو المسرحية."
       },
       "ticketPrice": {
-        "en": "TBA",
-        "ar": "يعلن لاحقاً"
+        "en": "To be announced",
+        "ar": "سيعلن قريباً"
       },
-      "ticketUrl": "#tickets",
+      "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterTone": "from-fuchsia-500 via-violet-600 to-black",
       "status": "soon"
@@ -418,8 +418,8 @@
       "ar": "ماريو باسيل الرسمي"
     },
     "note": {
-      "en": "GA4 and Meta Pixel placeholders are ready for production IDs.",
-      "ar": "حقول GA4 و Meta Pixel جاهزة لإضافة أرقام الإنتاج."
+      "en": "Follow Mario Bassil for official show updates, booking, and media highlights.",
+      "ar": "تابعوا ماريو باسيل لآخر أخبار العروض الرسمية والحجوزات وأبرز المحطات الإعلامية."
     },
     "copyright": {
       "en": "All rights reserved.",

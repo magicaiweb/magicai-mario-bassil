@@ -65,6 +65,34 @@ export type PageItem = {
   slug: string;
   title: LocalizedText;
   summary: LocalizedText;
+  posterImage?: string;
+  posterAlt?: LocalizedText;
+  featureLabel?: LocalizedText;
+  featureTitle?: LocalizedText;
+  featureBody?: LocalizedText;
+  crew?: {
+    name: string;
+    role: LocalizedText;
+    bio: LocalizedText;
+    image?: string;
+    imagePosition?: string;
+  }[];
+  showings?: {
+    date: string;
+    time: string;
+    venue: LocalizedText;
+    city: LocalizedText;
+    status: LocalizedText;
+    ticketUrl?: string;
+    ticketLabel?: LocalizedText;
+  }[];
+  contact?: {
+    eyebrow: LocalizedText;
+    title: LocalizedText;
+    body: LocalizedText;
+    email: string;
+    ctaLabel: LocalizedText;
+  };
   sections: {
     heading: LocalizedText;
     body: LocalizedText;

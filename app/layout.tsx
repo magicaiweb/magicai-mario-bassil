@@ -10,7 +10,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Mario Bassil Official | Comedy Night, Tours, Booking",
   description:
-    "Official bilingual website draft for Mario Bassil with shows, videos, press, booking, newsletter, and CMS-managed content.",
+    "Official bilingual website for Mario Bassil with Comedy Night, live shows, videos, press, booking, and media highlights.",
   keywords: [
     "Mario Bassil",
     "Mario Bassil official",
