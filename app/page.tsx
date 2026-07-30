@@ -106,7 +106,7 @@ export default function Home() {
               {t(aboutSection.title, language)}
             </h2>
             {aboutSection.image ? (
-              <div className="mt-8 aspect-[4/5] overflow-hidden rounded-lg bg-black bg-cover bg-center shadow-xl" style={{ backgroundImage: `url(${aboutSection.image})` }} />
+              <div className="mt-8 aspect-[4/5] overflow-hidden rounded-lg bg-black bg-contain bg-top bg-no-repeat shadow-xl" style={{ backgroundImage: `url(${aboutSection.image})` }} />
             ) : null}
           </div>
           <div className="space-y-6 text-lg leading-9 text-black/72">
@@ -170,11 +170,17 @@ export default function Home() {
             {initialContent.media
               .filter((item) => (item.status ?? "published") === "published")
               .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
-              .map((item) => (
-                <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
+              .map((item, index) => (
+                <a
+                  key={item.url}
+                  href={item.url}
+                  className={`group rounded-lg border p-5 transition hover:-translate-y-1 hover:border-black ${index === 0 ? "border-red-200 bg-black text-white lg:col-span-3 lg:grid lg:grid-cols-[minmax(240px,336px)_1fr] lg:items-center lg:gap-8" : "border-black/10 bg-[#f7f2e8]"}`}
+                >
                   <MediaPreview url={item.url} label={item.source} thumbnailImage={item.thumbnailImage} />
-                  <h3 className="mt-5 text-2xl font-black">{t(item.title, language)}</h3>
-                  <p className="mt-2 text-black/62">{t(item.category, language)}</p>
+                  <div>
+                    <h3 className="mt-5 text-2xl font-black lg:mt-0">{t(item.title, language)}</h3>
+                    <p className={`mt-2 ${index === 0 ? "text-white/68" : "text-black/62"}`}>{t(item.category, language)}</p>
+                  </div>
                 </a>
               ))}
           </div>
@@ -189,7 +195,7 @@ export default function Home() {
               .filter((item) => (item.status ?? "published") === "published")
               .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
               .map((item) => {
-                const className = `flex aspect-[4/5] items-end overflow-hidden rounded-lg bg-gradient-to-br ${item.tone} bg-cover bg-center p-5 transition hover:-translate-y-1`;
+                const className = `flex aspect-[4/5] items-end overflow-hidden rounded-lg bg-gradient-to-br ${item.tone} bg-contain bg-top bg-no-repeat p-5 transition hover:-translate-y-1`;
                 const style = item.image ? { backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.74)), url(${item.image})` } : undefined;
                 const content = (
                   <p className="rounded-md bg-black/55 px-3 py-2 text-sm font-black uppercase text-white backdrop-blur">{t(item.label, language)}</p>
@@ -322,7 +328,7 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
   if (previewImage) {
     return (
       <div
-        className="mx-auto flex aspect-[4/5] max-h-[420px] w-full max-w-[336px] items-center justify-center overflow-hidden rounded-md bg-black bg-contain bg-center bg-no-repeat text-white"
+        className="mx-auto flex aspect-[4/5] max-h-[420px] w-full max-w-[336px] items-center justify-center overflow-hidden rounded-md bg-black bg-contain bg-top bg-no-repeat text-white"
         style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.24)), url(${previewImage})` }}
       >
         <span className="rounded-full bg-black/72 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white">

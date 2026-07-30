@@ -103,7 +103,8 @@ function EventPoster({ event }: { event: EventItem }) {
   const posterStyle = {
     backgroundImage: `url(${posterImage})`,
     backgroundPosition: "center top",
-    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
   };
 
   return (

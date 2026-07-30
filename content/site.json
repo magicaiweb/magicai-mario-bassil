@@ -16,6 +16,13 @@
     },
     {
       "label": {
+        "en": "Showreel",
+        "ar": "الشوريل"
+      },
+      "href": "#showreel"
+    },
+    {
+      "label": {
         "en": "Shows",
         "ar": "العروض"
       },
@@ -230,15 +237,15 @@
   "media": [
     {
       "title": {
-        "en": "Acting Showreel",
-        "ar": "شوريل التمثيل"
+        "en": "Mario Bassil Acting Showreel",
+        "ar": "شوريل التمثيل لماريو باسيل"
       },
       "source": "Google Drive",
       "url": "https://drive.google.com/file/d/1t7OcLtH3O2aH_heOeYm8IofoeKrn5Ru8/view?usp=drivesdk",
-      "thumbnailImage": "/websites/mario-bassil/images/mario/red-background-point.jpg",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
       "category": {
-        "en": "Official video showreel",
-        "ar": "فيديو شوريل رسمي"
+        "en": "Featured official acting showreel",
+        "ar": "شوريل تمثيلي رسمي بارز"
       },
       "sortOrder": 0,
       "status": "published"
