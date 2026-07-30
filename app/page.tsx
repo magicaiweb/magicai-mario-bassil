@@ -13,6 +13,7 @@ const languageLabels: Record<Language, string> = {
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [formError, setFormError] = useState("");
+  const [showreelPlaying, setShowreelPlaying] = useState(false);
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
@@ -140,8 +141,8 @@ export default function Home() {
 
       <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="overflow-hidden rounded-lg border border-white/12 bg-black shadow-2xl">
-            {showreelPreviewUrl ? (
+          <div className="relative overflow-hidden rounded-lg border border-white/12 bg-black shadow-2xl">
+            {showreelPlaying && showreelPreviewUrl ? (
               <iframe
                 title={t(showreel.title, language)}
                 src={showreelPreviewUrl}
@@ -150,7 +151,23 @@ export default function Home() {
                 allowFullScreen
               />
             ) : (
-              <MediaPreview url={showreel.url} label={showreel.source} thumbnailImage={showreel.thumbnailImage} />
+              <button
+                type="button"
+                onClick={() => setShowreelPlaying(true)}
+                className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-black text-white"
+                aria-label={isArabic ? "تشغيل شوريل التمثيل لماريو باسيل" : "Play Mario Bassil acting showreel"}
+              >
+                <span
+                  className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.16) 48%, rgba(0,0,0,0.64)), url(${showreel.thumbnailImage || initialContent.hero.image})`,
+                  }}
+                />
+                <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,214,94,0.18),transparent_42%)]" />
+                <span className="relative grid h-20 w-20 place-items-center rounded-full border border-white/35 bg-white/12 text-amber-300 shadow-2xl backdrop-blur transition group-hover:scale-105 group-hover:bg-amber-300 group-hover:text-black">
+                  <PlayIcon />
+                </span>
+              </button>
             )}
           </div>
           <div>
@@ -396,6 +413,14 @@ function getYouTubeId(url: string) {
 function getGoogleDrivePreviewUrl(url: string) {
   const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
   return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
+}
+
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-9 w-9 fill-current">
+      <path d="M8 5.2v13.6L18.8 12 8 5.2Z" />
+    </svg>
+  );
 }
 
 function InstagramIcon() {
