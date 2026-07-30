@@ -13,10 +13,12 @@ const languageLabels: Record<Language, string> = {
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [formError, setFormError] = useState("");
+  const [showreelOpen, setShowreelOpen] = useState(false);
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
   const showreel = initialContent.media.find((item) => item.source === "Google Drive") ?? initialContent.media[0];
+  const showreelPreviewUrl = getGoogleDrivePreviewUrl(showreel.url);
 
   const dateFormatter = useMemo(
     () =>
@@ -140,12 +142,11 @@ export default function Home() {
       <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative overflow-hidden rounded-lg border border-white/12 bg-[#070707] shadow-2xl">
-            <a
-              href={showreel.url}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
+              onClick={() => setShowreelOpen(true)}
               className="group relative flex aspect-[4/5] min-h-[420px] w-full items-center justify-center overflow-hidden bg-[#070707] text-white sm:aspect-[16/10]"
-              aria-label={isArabic ? "فتح شوريل التمثيل لماريو باسيل" : "Open Mario Bassil acting showreel"}
+              aria-label={isArabic ? "تشغيل شوريل التمثيل لماريو باسيل بملء الشاشة" : "Play Mario Bassil acting showreel fullscreen"}
             >
               <span
                 className="absolute inset-0 scale-110 bg-cover bg-center opacity-45 blur-md transition duration-500 group-hover:scale-[1.14]"
@@ -163,18 +164,47 @@ export default function Home() {
               <span className="relative grid h-20 w-20 place-items-center rounded-full border border-white/40 bg-black/42 text-amber-300 shadow-2xl backdrop-blur transition group-hover:scale-105 group-hover:bg-amber-300 group-hover:text-black">
                 <PlayIcon />
               </span>
-            </a>
+            </button>
           </div>
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">{isArabic ? "الشوريل" : "Showreel"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">{t(showreel.title, language)}</h2>
             <p className="mt-5 max-w-xl text-lg leading-8 text-white/68">{t(showreel.category, language)}</p>
-            <a href={showreel.url} className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white">
+            <button
+              type="button"
+              onClick={() => setShowreelOpen(true)}
+              className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white"
+            >
               {isArabic ? "مشاهدة الشوريل" : "Watch showreel"}
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {showreelOpen ? (
+        <div className="fixed inset-0 z-50 bg-black text-white" role="dialog" aria-modal="true" aria-label={t(showreel.title, language)}>
+          <button
+            type="button"
+            onClick={() => setShowreelOpen(false)}
+            className="absolute right-4 top-4 z-10 rounded-md border border-white/20 bg-black/70 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur transition hover:bg-white hover:text-black"
+          >
+            {isArabic ? "إغلاق" : "Close"}
+          </button>
+          {showreelPreviewUrl ? (
+            <iframe
+              title={t(showreel.title, language)}
+              src={showreelPreviewUrl}
+              className="h-full w-full bg-black"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          ) : (
+            <a href={showreel.url} className="grid h-full place-items-center bg-black px-6 text-center text-xl font-black text-amber-300">
+              {isArabic ? "فتح الشوريل" : "Open showreel"}
+            </a>
+          )}
+        </div>
+      ) : null}
 
       <section id="shows" className="bg-[#111111]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
@@ -403,6 +433,11 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 function getYouTubeId(url: string) {
   const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? "";
+}
+
+function getGoogleDrivePreviewUrl(url: string) {
+  const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
 }
 
 function PlayIcon() {
