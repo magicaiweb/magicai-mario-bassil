@@ -56,7 +56,7 @@
       "en": "A bold bilingual home for fans, promoters, press, and private event organizers across Lebanon, the Arab world, and the diaspora.",
       "ar": "منصة ثنائية اللغة للجمهور والمنظمين والإعلام والفعاليات الخاصة في لبنان والعالم العربي والاغتراب."
     },
-    "image": "/websites/mario-bassil/images/mario-bassil-hero.jpg",
+    "image": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
     "primaryCta": {
       "en": "Book Mario",
       "ar": "احجز ماريو"
@@ -161,7 +161,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "",
+      "posterImage": "/websites/mario-bassil/images/mario/show-must-go-on-poster.jpg",
       "posterTone": "from-amber-300 via-red-500 to-black",
       "status": "soon"
     },
@@ -191,7 +191,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "",
+      "posterImage": "/websites/mario-bassil/images/mario/red-background-point.jpg",
       "posterTone": "from-cyan-300 via-blue-700 to-black",
       "status": "soon"
     },
@@ -221,7 +221,7 @@
         "ar": "يعلن لاحقاً"
       },
       "ticketUrl": "#tickets",
-      "posterImage": "",
+      "posterImage": "/websites/mario-bassil/images/mario/stage-character.jpg",
       "posterTone": "from-fuchsia-500 via-violet-600 to-black",
       "status": "soon"
     }
@@ -234,7 +234,7 @@
       },
       "source": "YouTube",
       "url": "https://www.youtube.com/results?search_query=Mario+Bassil+Comedy+Night",
-      "thumbnailImage": "https://img.youtube.com/vi/kijjTW_cwNw/hqdefault.jpg",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "category": {
         "en": "TV and theatre archive",
         "ar": "أرشيف تلفزيوني ومسرحي"
@@ -249,7 +249,7 @@
       },
       "source": "YouTube",
       "url": "https://www.youtube.com/watch?v=ZJJSTjpqlQ4",
-      "thumbnailImage": "https://img.youtube.com/vi/ZJJSTjpqlQ4/hqdefault.jpg",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/diwan-stage.jpg",
       "category": {
         "en": "Stage show clip",
         "ar": "مقطع من عرض مسرحي"
@@ -264,7 +264,7 @@
       },
       "source": "YouTube",
       "url": "https://www.youtube.com/watch?v=qLqv8qkJ3q8",
-      "thumbnailImage": "https://img.youtube.com/vi/qLqv8qkJ3q8/hqdefault.jpg",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/red-background-point.jpg",
       "category": {
         "en": "Full episode archive",
         "ar": "أرشيف حلقة كاملة"
@@ -308,7 +308,7 @@
         "en": "Comedy Night Season 1",
         "ar": "كوميدي نايت الموسم الأول"
       },
-      "image": "https://img.youtube.com/vi/kijjTW_cwNw/hqdefault.jpg",
+      "image": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg",
       "url": "https://www.youtube.com/watch?v=kijjTW_cwNw",
       "sortOrder": 1,
       "status": "published",
@@ -319,7 +319,7 @@
         "en": "Comedy Night Zero",
         "ar": "كوميدي نايت زيرو"
       },
-      "image": "https://img.youtube.com/vi/ZJJSTjpqlQ4/hqdefault.jpg",
+      "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
       "url": "https://www.youtube.com/watch?v=ZJJSTjpqlQ4",
       "sortOrder": 2,
       "status": "published",
@@ -330,7 +330,7 @@
         "en": "Comedy Night Season 2",
         "ar": "كوميدي نايت الموسم الثاني"
       },
-      "image": "https://img.youtube.com/vi/qLqv8qkJ3q8/hqdefault.jpg",
+      "image": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "url": "https://www.youtube.com/watch?v=qLqv8qkJ3q8",
       "sortOrder": 3,
       "status": "published",
@@ -341,7 +341,7 @@
         "en": "Comedy Night Full Show",
         "ar": "عرض كوميدي نايت الكامل"
       },
-      "image": "https://img.youtube.com/vi/oFUyTb4D13I/hqdefault.jpg",
+      "image": "/websites/mario-bassil/images/mario/stage-character.jpg",
       "url": "https://www.youtube.com/watch?v=oFUyTb4D13I",
       "sortOrder": 4,
       "status": "published",

@@ -86,7 +86,7 @@ export default function Home() {
           fill
           priority
           sizes="100vw"
-          className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
+          className="absolute inset-0 h-full w-full object-contain"
         />
       </section>
 
