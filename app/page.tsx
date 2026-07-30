@@ -322,7 +322,7 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
   if (previewImage) {
     return (
       <div
-        className="flex aspect-video items-center justify-center overflow-hidden rounded-md bg-black bg-cover bg-center text-white"
+        className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-md bg-black bg-contain bg-top bg-no-repeat text-white"
         style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.24)), url(${previewImage})` }}
       >
         <span className="rounded-full bg-black/72 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white">
@@ -334,7 +334,7 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 
   if (!videoId) {
     return (
-      <div className="flex aspect-video items-center justify-center rounded-md bg-black text-white">
+      <div className="flex aspect-[4/5] items-center justify-center rounded-md bg-black text-white">
         <span className="text-sm font-black uppercase tracking-[0.22em]">{label}</span>
       </div>
     );
