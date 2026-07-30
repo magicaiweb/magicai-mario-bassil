@@ -22,6 +22,7 @@ export function EventDetail({ event }: { event: EventItem }) {
       }).format(new Date(`${event.date}T00:00:00`)),
     [event.date, isArabic],
   );
+  const isBookingInquiry = event.status === "soon";
 
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="min-h-screen bg-[#111111] text-white">
@@ -73,7 +74,7 @@ export function EventDetail({ event }: { event: EventItem }) {
 
           <div className="flex flex-col items-start gap-4">
             <p className="text-2xl font-black tracking-normal text-amber-300">
-              {isArabic ? "سعر التذكرة: " : "Ticket Price : "}
+              {isBookingInquiry ? (isArabic ? "الحجز: " : "Booking: ") : (isArabic ? "سعر التذكرة: " : "Ticket Price: ")}
               {t(event.ticketPrice, language)}
             </p>
             <div className="flex flex-wrap gap-3">
@@ -81,7 +82,7 @@ export function EventDetail({ event }: { event: EventItem }) {
                 href={event.ticketUrl}
                 className="rounded-md bg-amber-300 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-white"
               >
-                {isArabic ? "شراء تذكرة" : "Buy Ticket"}
+                {isBookingInquiry ? (isArabic ? "طلب التفاصيل" : "Request Details") : (isArabic ? "شراء تذكرة" : "Buy Ticket")}
               </a>
               <Link
                 href="/#book"

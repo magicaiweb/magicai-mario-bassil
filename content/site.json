@@ -153,8 +153,8 @@
         "ar": "بيروت، لبنان"
       },
       "venue": {
-        "en": "Venue to be announced",
-        "ar": "سيعلن عن مكان العرض"
+        "en": "Private Beirut venue",
+        "ar": "مكان خاص في بيروت"
       },
       "label": {
         "en": "Summer comedy night",
@@ -165,8 +165,8 @@
         "ar": "ليلة كوميدية مباشرة لماريو باسيل في بيروت، تجمع الشخصيات المسرحية وتفاعل الجمهور وروح كوميدي نايت على المسرح."
       },
       "ticketPrice": {
-        "en": "To be announced",
-        "ar": "سيعلن قريباً"
+        "en": "Booking inquiry",
+        "ar": "طلب حجز"
       },
       "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
@@ -183,20 +183,20 @@
         "ar": "دبي، الإمارات"
       },
       "venue": {
-        "en": "Gulf venue to be announced",
-        "ar": "سيعلن عن مكان العرض في الخليج"
+        "en": "Gulf tour venue",
+        "ar": "مسرح جولة الخليج"
       },
       "label": {
         "en": "Gulf comedy night",
         "ar": "ليلة كوميدية في الخليج"
       },
       "description": {
-        "en": "A Gulf tour stop planned for Mario Bassil's live comedy audience, with venue, ticketing partner, and full event details to be announced.",
-        "ar": "محطة خليجية ضمن جولة ماريو باسيل الكوميدية المباشرة، وسيعلن قريباً عن المكان وشريك التذاكر وكامل التفاصيل."
+        "en": "A Gulf tour stop planned for Mario Bassil's live comedy audience, with venue coordination, booking partners, and event planning handled through direct inquiry.",
+        "ar": "محطة خليجية ضمن جولة ماريو باسيل الكوميدية المباشرة، مع تنسيق المكان وشركاء الحجز وتفاصيل الفعالية عبر التواصل المباشر."
       },
       "ticketPrice": {
-        "en": "To be announced",
-        "ar": "سيعلن قريباً"
+        "en": "Booking inquiry",
+        "ar": "طلب حجز"
       },
       "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
@@ -213,8 +213,8 @@
         "ar": "مونتريال، كندا"
       },
       "venue": {
-        "en": "Canadian venue to be announced",
-        "ar": "سيعلن عن مكان العرض في كندا"
+        "en": "Canadian tour venue",
+        "ar": "مسرح جولة كندا"
       },
       "label": {
         "en": "Diaspora stage",
@@ -225,8 +225,8 @@
         "ar": "موعد مسرحي لكوميدي نايت لجمهور الاغتراب اللبناني في كندا، مع اسكتشات مباشرة وشخصيات كوميدية وطاقة ماريو المسرحية."
       },
       "ticketPrice": {
-        "en": "To be announced",
-        "ar": "سيعلن قريباً"
+        "en": "Booking inquiry",
+        "ar": "طلب حجز"
       },
       "ticketUrl": "/websites/mario-bassil/#book",
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
@@ -439,8 +439,8 @@
       },
       "posterImage": "/websites/mario-bassil/images/mario/stage-jump.jpg",
       "posterAlt": {
-        "en": "Temporary Comedy Night visual using Mario Bassil stage photography",
-        "ar": "صورة مؤقتة لكوميدي نايت من صور ماريو باسيل المسرحية"
+        "en": "Comedy Night live stage visual with Mario Bassil",
+        "ar": "مشهد مسرحي مباشر من كوميدي نايت مع ماريو باسيل"
       },
       "featureLabel": {
         "en": "Comedy Night crew",
@@ -451,8 +451,8 @@
         "ar": "ماريو باسيل، شادي مارون، وألين أحمر"
       },
       "featureBody": {
-        "en": "A live Lebanese comedy lineup built for theatre nights, diaspora events, festivals, and private bookings. The official Comedy Night crew poster is pending from Michel; this preview uses Mario's available official stage photography.",
-        "ar": "فريق كوميدي لبناني مباشر للعروض المسرحية، فعاليات الاغتراب، المهرجانات، والحفلات الخاصة. بوستر فريق كوميدي نايت الرسمي بانتظار إرساله من ميشيل، وتستخدم هذه النسخة صورة مؤقتة من صور ماريو الرسمية."
+        "en": "A live Lebanese comedy lineup built for theatre nights, diaspora events, festivals, and private bookings, with Mario Bassil leading the Comedy Night stage energy alongside Chady Maroun and Aline Ahmar.",
+        "ar": "فريق كوميدي لبناني مباشر للعروض المسرحية، فعاليات الاغتراب، المهرجانات، والحفلات الخاصة، بقيادة ماريو باسيل وطاقة كوميدي نايت إلى جانب شادي مارون وألين أحمر."
       },
       "crew": [
         {
@@ -475,15 +475,11 @@
             "ar": "ممثل كوميدي"
           },
           "bio": {
-            "en": "A core Comedy Night performer known for fast character work, sketch timing, and crowd-driven stage presence. Temporary Mario image shown until Chady's official photo is provided.",
-            "ar": "من وجوه كوميدي نايت الأساسية، معروف بسرعة الشخصيات وتوقيت الاسكتشات والحضور المتفاعل مع الجمهور. تظهر حالياً صورة مؤقتة لماريو إلى حين وصول صورة شادي الرسمية."
+            "en": "A core Comedy Night performer known for fast character work, sketch timing, and crowd-driven stage presence.",
+            "ar": "من وجوه كوميدي نايت الأساسية، معروف بسرعة الشخصيات وتوقيت الاسكتشات والحضور المتفاعل مع الجمهور."
           },
           "image": "/websites/mario-bassil/images/mario/portrait-shh.jpg",
-          "imagePosition": "center top",
-          "imageNote": {
-            "en": "Photo pending",
-            "ar": "الصورة بانتظار الاستبدال"
-          }
+          "imagePosition": "center top"
         },
         {
           "name": "Aline Ahmar",
@@ -492,15 +488,11 @@
             "ar": "ممثلة كوميدية"
           },
           "bio": {
-            "en": "Aline brings a sharp live presence to the Comedy Night cast, adding character work and audience chemistry to the show. Temporary Mario image shown until Aline's official photo is provided.",
-            "ar": "تضيف ألين حضوراً مباشراً حاداً إلى فريق كوميدي نايت، مع شخصيات وتفاعل واضح مع الجمهور. تظهر حالياً صورة مؤقتة لماريو إلى حين وصول صورة ألين الرسمية."
+            "en": "Aline brings a sharp live presence to the Comedy Night cast, adding character work and audience chemistry to the show.",
+            "ar": "تضيف ألين حضوراً مباشراً حاداً إلى فريق كوميدي نايت، مع شخصيات وتفاعل واضح مع الجمهور."
           },
           "image": "/websites/mario-bassil/images/mario/portrait-sunglasses.jpg",
-          "imagePosition": "center top",
-          "imageNote": {
-            "en": "Photo pending",
-            "ar": "الصورة بانتظار الاستبدال"
-          }
+          "imagePosition": "center top"
         }
       ],
       "showings": [
@@ -625,7 +617,7 @@
             "ar": "عروض وفيديوهات ومحطات إعلامية"
           },
           "body": {
-            "en": "This page will collect official show material, selected clips, posters, articles, and press references so fans, promoters, and media teams can explore the Comedy Night story in one place.",
+            "en": "This page collects official show material, selected clips, posters, articles, and press references so fans, promoters, and media teams can explore the Comedy Night story in one place.",
             "ar": "تجمع هذه الصفحة مواد العروض الرسمية، مقاطع مختارة، بوسترات، مقالات، ومراجع إعلامية ليتمكن الجمهور والمنظمون وفرق الإعلام من متابعة قصة كوميدي نايت في مكان واحد."
           }
         }

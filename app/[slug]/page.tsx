@@ -37,8 +37,8 @@ export default async function CmsPage({ params }: { params: Params }) {
   const isComedyNight = page.slug === "comedy-night";
   const posterImage = page.posterImage ?? "/websites/mario-bassil/images/mario/stage-jump.jpg";
   const posterAlt = page.posterAlt ?? {
-    en: "Temporary Comedy Night visual using Mario Bassil stage photography",
-    ar: "صورة مؤقتة لكوميدي نايت من صور ماريو باسيل المسرحية",
+    en: "Comedy Night live stage visual with Mario Bassil",
+    ar: "مشهد مسرحي مباشر من كوميدي نايت مع ماريو باسيل",
   };
   const featureLabel = page.featureLabel ?? { en: "Comedy Night crew", ar: "فريق كوميدي نايت" };
   const featureTitle = page.featureTitle ?? {
@@ -131,7 +131,7 @@ export default async function CmsPage({ params }: { params: Params }) {
                         className="object-cover"
                         style={{ objectPosition: member.imagePosition ?? "center top" }}
                       />
-                      {member.imageNote ? (
+                      {member.imageNote && t(member.imageNote, language) ? (
                         <span className="absolute left-3 top-3 rounded-md bg-amber-300 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-black shadow-lg">
                           {t(member.imageNote, language)}
                         </span>
@@ -152,10 +152,10 @@ export default async function CmsPage({ params }: { params: Params }) {
               <section className="mt-8 rounded-xl border border-white/10 bg-white/[0.045] p-6 sm:p-8">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-300">Showings dates</p>
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-300">Show dates</p>
                   <h2 className="mt-3 text-3xl font-black sm:text-4xl">Comedy Night tour archive</h2>
                 </div>
-                <span className="text-sm font-bold text-white/55">More dates will be announced soon.</span>
+                <span className="text-sm font-bold text-white/55">For new tour dates, contact booking.</span>
               </div>
               <div className="mt-6 grid gap-3">
                 {comedyNightShowings.map((showing) => (
