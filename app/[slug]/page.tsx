@@ -42,7 +42,7 @@ export default async function CmsPage({ params }: { params: Params }) {
         </Link>
         <section className="mt-12 border-b border-white/10 pb-10">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-amber-300">
-            CMS Page
+            Comedy Archive
           </p>
           <h1 className="mt-4 text-5xl font-black sm:text-7xl">
             {t(page.title, language)}

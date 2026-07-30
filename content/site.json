@@ -434,18 +434,28 @@
         "ar": "كوميدي نايت"
       },
       "summary": {
-        "en": "A CMS-created page for the Comedy Night story, posters, tour notes, ticket links and press proof.",
-        "ar": "صفحة قابلة للإدارة لسرد قصة كوميدي نايت والبوسترات ومعلومات الجولات وروابط التذاكر."
+        "en": "The Comedy Night archive brings together Mario Bassil's stage legacy, television sketches, live tours, posters, and media highlights.",
+        "ar": "أرشيف كوميدي نايت يجمع إرث ماريو باسيل المسرحي، الاسكتشات التلفزيونية، الجولات المباشرة، البوسترات، وأبرز المحطات الإعلامية."
       },
       "sections": [
         {
           "heading": {
-            "en": "Long-running live comedy",
-            "ar": "كوميديا مباشرة طويلة الأمد"
+            "en": "A Lebanese comedy landmark",
+            "ar": "علامة فارقة في الكوميديا اللبنانية"
           },
           "body": {
-            "en": "This page demonstrates how new editorial pages and sections can be created from the backend, then published through the Git-based CMS workflow.",
-            "ar": "تعرض هذه الصفحة كيفية إنشاء صفحات وأقسام تحريرية جديدة من لوحة الإدارة ثم نشرها عبر نظام إدارة محتوى مرتبط بـ Git."
+            "en": "Comedy Night became one of Mario Bassil's signature platforms, mixing sharp characters, stage energy, television moments, and live audience interaction across Lebanon and the Arab world.",
+            "ar": "أصبحت كوميدي نايت من أبرز منصات ماريو باسيل، جامعة بين الشخصيات الكوميدية، طاقة المسرح، اللحظات التلفزيونية، والتفاعل المباشر مع الجمهور في لبنان والعالم العربي."
+          }
+        },
+        {
+          "heading": {
+            "en": "Shows, clips, and press moments",
+            "ar": "عروض وفيديوهات ومحطات إعلامية"
+          },
+          "body": {
+            "en": "This page will collect official show material, selected clips, posters, articles, and press references so fans, promoters, and media teams can explore the Comedy Night story in one place.",
+            "ar": "تجمع هذه الصفحة مواد العروض الرسمية، مقاطع مختارة، بوسترات، مقالات، ومراجع إعلامية ليتمكن الجمهور والمنظمون وفرق الإعلام من متابعة قصة كوميدي نايت في مكان واحد."
           }
         }
       ]
