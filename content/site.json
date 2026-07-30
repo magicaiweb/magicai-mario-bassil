@@ -230,6 +230,21 @@
   "media": [
     {
       "title": {
+        "en": "Acting Showreel",
+        "ar": "شوريل التمثيل"
+      },
+      "source": "Google Drive",
+      "url": "https://drive.google.com/file/d/1t7OcLtH3O2aH_heOeYm8IofoeKrn5Ru8/view?usp=drivesdk",
+      "thumbnailImage": "/websites/mario-bassil/images/mario/red-background-point.jpg",
+      "category": {
+        "en": "Official video showreel",
+        "ar": "فيديو شوريل رسمي"
+      },
+      "sortOrder": 0,
+      "status": "published"
+    },
+    {
+      "title": {
         "en": "Comedy Night clips",
         "ar": "مقاطع كوميدي نايت"
       },
