@@ -6,6 +6,21 @@ import { EditableSection, EventItem, GalleryItem, initialContent, Language, Medi
 
 const storageKey = "mario-bassil-cms-draft";
 
+function withContentDefaults(content: SiteContent): SiteContent {
+  return {
+    ...initialContent,
+    ...content,
+    contacts: {
+      ...initialContent.contacts,
+      ...content.contacts,
+    },
+    footer: {
+      ...initialContent.footer,
+      ...content.footer,
+    },
+  };
+}
+
 const blankSection: EditableSection = {
   id: "new-page-section",
   type: "text",
@@ -56,7 +71,7 @@ export default function AdminPage() {
     const stored = window.localStorage.getItem(storageKey);
     if (stored) {
       window.requestAnimationFrame(() => {
-        setContent(JSON.parse(stored) as SiteContent);
+        setContent(withContentDefaults(JSON.parse(stored) as SiteContent));
       });
     }
   }, []);
@@ -246,6 +261,18 @@ export default function AdminPage() {
     saveDraft(next);
   }
 
+  function updateFooter(field: keyof SiteContent["footer"], value: string) {
+    const next = {
+      ...content,
+      footer: {
+        ...content.footer,
+        [field]: { ...content.footer[field], [activeLanguage]: value },
+      },
+    };
+    setContent(next);
+    saveDraft(next);
+  }
+
   return (
     <main className="min-h-screen bg-[#f4f1ea] text-[#171717]">
       <header className="sticky top-0 z-10 border-b border-black/10 bg-[#f4f1ea]/95 px-5 py-4 backdrop-blur">
@@ -280,7 +307,7 @@ export default function AdminPage() {
       <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 lg:grid-cols-[240px_1fr]">
         <aside className="h-fit rounded-lg border border-black/10 bg-white p-4">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-black/40">Editable collections</p>
-          {["Hero", "Navigation", "Pages / Sections", "CMS Pages", "Events", "Videos", "Gallery", "Press", "Booking", "SEO", "Analytics"].map((item) => (
+          {["Hero", "Navigation", "Pages / Sections", "CMS Pages", "Events", "Videos", "Gallery", "Press", "Booking", "Footer", "SEO", "Analytics"].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-")}`} className="mt-3 block rounded-md px-3 py-2 text-sm font-bold hover:bg-black hover:text-white">
               {item}
             </a>
@@ -472,6 +499,14 @@ export default function AdminPage() {
               <Field label="Instagram" value={content.contacts.instagram} onChange={(value) => updateContact("instagram", value)} />
               <Field label="Facebook" value={content.contacts.facebook} onChange={(value) => updateContact("facebook", value)} />
             </div>
+          </EditorPanel>
+
+          <EditorPanel id="footer" title="Footer">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Brand line" value={content.footer.brand[activeLanguage]} onChange={(value) => updateFooter("brand", value)} />
+              <Field label="Copyright" value={content.footer.copyright[activeLanguage]} onChange={(value) => updateFooter("copyright", value)} />
+            </div>
+            <Area label="Footer note" value={content.footer.note[activeLanguage]} onChange={(value) => updateFooter("note", value)} />
           </EditorPanel>
 
           <EditorPanel id="seo" title="SEO">

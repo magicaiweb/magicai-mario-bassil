@@ -276,8 +276,9 @@ export default function Home() {
 
       <footer className="border-t border-white/10 bg-[#111111] px-5 py-8 text-sm text-white/60 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 sm:flex-row">
-          <span>Mario Bassil Official</span>
-          <span>GA4 and Meta Pixel placeholders are ready for production IDs.</span>
+          <span>{t(initialContent.footer.brand, language)}</span>
+          <span>{t(initialContent.footer.note, language)}</span>
+          <span>{t(initialContent.footer.copyright, language)}</span>
         </div>
       </footer>
     </main>

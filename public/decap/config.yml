@@ -193,6 +193,22 @@ collections:
               - { label: Email, name: email, widget: string }
               - { label: Facebook, name: facebook, widget: string }
               - { label: Instagram, name: instagram, widget: string }
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - label: Brand
+                name: brand
+                widget: object
+                fields: *localized_string
+              - label: Footer note
+                name: note
+                widget: object
+                fields: *localized_text
+              - label: Copyright
+                name: copyright
+                widget: object
+                fields: *localized_string
           - label: Custom Pages
             name: pages
             widget: list

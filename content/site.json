@@ -353,6 +353,20 @@
     "facebook": "https://www.facebook.com/mario.bassil.comedian/",
     "instagram": "https://www.instagram.com/mariobassilofficial/?hl=en"
   },
+  "footer": {
+    "brand": {
+      "en": "Mario Bassil Official",
+      "ar": "ماريو باسيل الرسمي"
+    },
+    "note": {
+      "en": "GA4 and Meta Pixel placeholders are ready for production IDs.",
+      "ar": "حقول GA4 و Meta Pixel جاهزة لإضافة أرقام الإنتاج."
+    },
+    "copyright": {
+      "en": "All rights reserved.",
+      "ar": "جميع الحقوق محفوظة."
+    }
+  },
   "pages": [
     {
       "slug": "comedy-night",

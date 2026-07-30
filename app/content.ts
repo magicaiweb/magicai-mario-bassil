@@ -89,6 +89,11 @@ export type SiteContent = {
     facebook: string;
     instagram: string;
   };
+  footer: {
+    brand: LocalizedText;
+    note: LocalizedText;
+    copyright: LocalizedText;
+  };
   pages: PageItem[];
 };
 
