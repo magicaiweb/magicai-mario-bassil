@@ -461,7 +461,7 @@ export default function AdminPage() {
             {content.media.map((item, index) => (
               <div key={`${item.url}-${index}`} className="grid gap-3 rounded-md border border-black/10 bg-[#f9f7f2] p-4 lg:grid-cols-7">
                 <Field label="Title" value={item.title[activeLanguage]} onChange={(value) => updateMedia(index, { title: { ...item.title, [activeLanguage]: value } })} />
-                <Select label="Source" value={item.source} options={["YouTube", "Instagram", "Facebook", "Google Drive"]} onChange={(value) => updateMedia(index, { source: value as MediaItem["source"] })} />
+                <Select label="Source" value={item.source} options={["YouTube", "Instagram", "Facebook", "Google Drive", "Hosted Video"]} onChange={(value) => updateMedia(index, { source: value as MediaItem["source"] })} />
                 <Field label="URL" value={item.url} onChange={(value) => updateMedia(index, { url: value })} />
                 <Field label="Thumbnail image URL" value={item.thumbnailImage ?? ""} onChange={(value) => updateMedia(index, { thumbnailImage: value })} />
                 <Field label="Category" value={item.category[activeLanguage]} onChange={(value) => updateMedia(index, { category: { ...item.category, [activeLanguage]: value } })} />

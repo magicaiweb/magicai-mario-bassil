@@ -20,6 +20,9 @@
 # production
 /build
 
+# hosted media payloads are deployed from this workspace, not committed
+/public/videos/*.mp4
+
 # misc
 .DS_Store
 *.pem

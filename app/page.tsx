@@ -13,12 +13,11 @@ const languageLabels: Record<Language, string> = {
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
   const [formError, setFormError] = useState("");
-  const [showreelOpen, setShowreelOpen] = useState(false);
   const isArabic = language === "ar";
   const aboutSection = initialContent.sections.find((section) => section.id === "about") ?? initialContent.sections[0];
   const bookingSection = initialContent.sections.find((section) => section.id === "book") ?? initialContent.sections[1];
-  const showreel = initialContent.media.find((item) => item.source === "Google Drive") ?? initialContent.media[0];
-  const showreelPreviewUrl = getGoogleDrivePreviewUrl(showreel.url);
+  const showreel = initialContent.media.find((item) => item.source === "Hosted Video" || item.source === "Google Drive") ?? initialContent.media[0];
+  const showreelPoster = showreel.thumbnailImage || initialContent.hero.image;
 
   const dateFormatter = useMemo(
     () =>
@@ -142,69 +141,36 @@ export default function Home() {
       <section id="showreel" className="border-y border-white/10 bg-[#111111] text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative overflow-hidden rounded-lg border border-white/12 bg-[#070707] shadow-2xl">
-            <button
-              type="button"
-              onClick={() => setShowreelOpen(true)}
-              className="group relative flex aspect-[4/5] min-h-[420px] w-full items-center justify-center overflow-hidden bg-[#070707] text-white sm:aspect-[16/10]"
-              aria-label={isArabic ? "تشغيل شوريل التمثيل لماريو باسيل بملء الشاشة" : "Play Mario Bassil acting showreel fullscreen"}
-            >
+            <div className="relative overflow-hidden bg-[#070707]">
               <span
-                className="absolute inset-0 scale-110 bg-cover bg-center opacity-45 blur-md transition duration-500 group-hover:scale-[1.14]"
+                className="absolute inset-0 scale-110 bg-cover bg-center opacity-35 blur-md"
                 style={{
-                  backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.72)), url(${showreel.thumbnailImage || initialContent.hero.image})`,
+                  backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.72), rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.72)), url(${showreelPoster})`,
                 }}
               />
-              <span
-                className="absolute inset-4 rounded-md bg-contain bg-center bg-no-repeat transition duration-500 group-hover:scale-[1.02]"
-                style={{
-                  backgroundImage: `url(${showreel.thumbnailImage || initialContent.hero.image})`,
-                }}
-              />
-              <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,214,94,0.16),transparent_48%)]" />
-              <span className="relative grid h-20 w-20 place-items-center rounded-full border border-white/40 bg-black/42 text-amber-300 shadow-2xl backdrop-blur transition group-hover:scale-105 group-hover:bg-amber-300 group-hover:text-black">
-                <PlayIcon />
-              </span>
-            </button>
+              <video
+                className="relative aspect-video w-full bg-black/60 object-contain"
+                controls
+                playsInline
+                preload="metadata"
+                poster={showreelPoster}
+                aria-label={t(showreel.title, language)}
+              >
+                <source src={showreel.url} type="video/mp4" />
+                <a href={showreel.url}>{isArabic ? "فتح الشوريل" : "Open showreel"}</a>
+              </video>
+            </div>
           </div>
           <div>
             <p className="text-sm font-black uppercase tracking-[0.2em] text-red-500">{isArabic ? "الشوريل" : "Showreel"}</p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">{t(showreel.title, language)}</h2>
             <p className="mt-5 max-w-xl text-lg leading-8 text-white/68">{t(showreel.category, language)}</p>
-            <button
-              type="button"
-              onClick={() => setShowreelOpen(true)}
-              className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white"
-            >
+            <a href={showreel.url} className="mt-8 inline-flex rounded-md bg-amber-300 px-5 py-3 text-sm font-black uppercase text-black transition hover:bg-white">
               {isArabic ? "مشاهدة الشوريل" : "Watch showreel"}
-            </button>
+            </a>
           </div>
         </div>
       </section>
-
-      {showreelOpen ? (
-        <div className="fixed inset-0 z-50 bg-black text-white" role="dialog" aria-modal="true" aria-label={t(showreel.title, language)}>
-          <button
-            type="button"
-            onClick={() => setShowreelOpen(false)}
-            className="absolute right-4 top-4 z-10 rounded-md border border-white/20 bg-black/70 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur transition hover:bg-white hover:text-black"
-          >
-            {isArabic ? "إغلاق" : "Close"}
-          </button>
-          {showreelPreviewUrl ? (
-            <iframe
-              title={t(showreel.title, language)}
-              src={showreelPreviewUrl}
-              className="h-full w-full bg-black"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-            />
-          ) : (
-            <a href={showreel.url} className="grid h-full place-items-center bg-black px-6 text-center text-xl font-black text-amber-300">
-              {isArabic ? "فتح الشوريل" : "Open showreel"}
-            </a>
-          )}
-        </div>
-      ) : null}
 
       <section id="shows" className="bg-[#111111]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
@@ -247,7 +213,7 @@ export default function Home() {
           <h2 className="mt-4 max-w-3xl text-4xl font-black sm:text-5xl">{isArabic ? "مقاطع وريلز وروابط اجتماعية" : "Clips, reels, and social embeds"}</h2>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {initialContent.media
-              .filter((item) => (item.status ?? "published") === "published" && item.source !== "Google Drive")
+              .filter((item) => (item.status ?? "published") === "published" && item !== showreel)
               .toSorted((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
               .map((item) => (
                 <a key={item.url} href={item.url} className="group rounded-lg border border-black/10 bg-[#f7f2e8] p-5 transition hover:-translate-y-1 hover:border-black">
@@ -433,19 +399,6 @@ function MediaPreview({ url, label, thumbnailImage }: { url: string; label: stri
 function getYouTubeId(url: string) {
   const match = url.match(/(?:watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{6,})/);
   return match?.[1] ?? "";
-}
-
-function getGoogleDrivePreviewUrl(url: string) {
-  const match = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
-}
-
-function PlayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-9 w-9 fill-current">
-      <path d="M8 5.2v13.6L18.8 12 8 5.2Z" />
-    </svg>
-  );
 }
 
 function InstagramIcon() {

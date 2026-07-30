@@ -143,7 +143,7 @@ collections:
               - label: Source
                 name: source
                 widget: select
-                options: ["YouTube", "Instagram", "Facebook", "Google Drive"]
+                options: ["YouTube", "Instagram", "Facebook", "Google Drive", "Hosted Video"]
               - { label: URL, name: url, widget: string }
               - { label: Thumbnail Image URL, name: thumbnailImage, widget: string, required: false }
               - label: Category

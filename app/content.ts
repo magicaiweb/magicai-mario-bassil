@@ -36,7 +36,7 @@ export type EventItem = {
 
 export type MediaItem = {
   title: LocalizedText;
-  source: "YouTube" | "Instagram" | "Facebook" | "Google Drive";
+  source: "YouTube" | "Instagram" | "Facebook" | "Google Drive" | "Hosted Video";
   url: string;
   thumbnailImage?: string;
   category: LocalizedText;
